@@ -112,7 +112,7 @@
         }
         .wave-text-container.active {
             opacity: 1;
-            animation: finalZoomOut 1s ease 4s forwards; /* చివరిలో జూమ్ అయి మాయమవుతుంది */
+            animation: finalZoomOut 1s ease 4s forwards;
         }
 
         .wave-letter {
@@ -324,26 +324,21 @@
 </head>
 <body>
 
-    <!-- Professional Top Header -->
     <header>
         <h1>🎁 SMILEY GIFTS CENTER</h1>
         <a href="tel:09133196199" class="header-phone">📞 91331 96199</a>
     </header>
 
-    <!-- Banner & Video Timeline Flow -->
     <div class="banner-container">
-        <!-- 1. Original Shop Banner (మొదట కొద్దిసేపు కనపడి మాయమవుతుంది) -->
         <div id="shopBanner" class="original-shop-banner"></div>
 
-        <!-- 2. Background Video (స్టార్టింగ్ నుంచి ఎండింగ్ వరకు రన్ అవుతుంది) -->
-        <video id="bgVideo" muted playsinline class="banner-video">
+        <video id="bgVideo" autoplay muted playsinline class="banner-video">
             <source src="last_lo_humen_photofrmes_enka.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
         <div class="banner-overlay"></div>
 
-        <!-- 3. Ending Wave & Zoom Text -->
         <div id="waveText" class="wave-text-container">
             <span class="wave-letter">S</span>
             <span class="wave-letter">m</span>
@@ -382,13 +377,11 @@
     </div>
 
     <div class="container">
-        <!-- About Us -->
         <div class="card">
             <h2>Welcome to Smiley Gifts Center</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #555;">Located in <strong>Chirala (Polimera Rd, opposite HDFC Bank)</strong>. We bring your special moments to life with stunning photo frames, god idols, giant teddy bears, and luxury perfumes.</p>
         </div>
 
-        <!-- GIFTS GALLERY WITH MANUAL SCROLL BUTTONS & ZOOM -->
         <div class="card">
             <h2>Trending Gifts &amp; Perfumes Showcase</h2>
             <p style="text-align: center; margin-bottom: 20px; font-weight: 500; color: #666;">Click on any item to view full screen, or use buttons to move left/right:</p>
@@ -415,7 +408,7 @@
                     </div>
                     <div class="scroll-item" onclick="openModal('couple.png', 'Couple Love Showpiece')">
                         <img src="couple.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
-                        Love Showpiece
+                        Couple Love Showpiece
                     </div>
                 </div>
 
@@ -423,7 +416,6 @@
             </div>
         </div>
 
-        <!-- Contact & Address Section -->
         <div class="contact-box">
             <h2>Visit Us / Direct Contact</h2>
             <div class="contact-details">
@@ -434,7 +426,6 @@
         </div>
     </div>
 
-    <!-- Modal Popup (Zoom Image) -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-btn">&times;</span>
         <img id="modalImg" src="" alt="Zoomed Image">
@@ -470,7 +461,7 @@
             });
         }
 
-        // Exact Sequence Animation Flow
+        // Exact Sequence Animation Flow with Video Fix
         const banner = document.getElementById('shopBanner');
         const video = document.getElementById('bgVideo');
         const waveText = document.getElementById('waveText');
@@ -485,16 +476,23 @@
             // 1. Banner displays for 3.5 seconds, then fades out
             setTimeout(() => {
                 banner.classList.add('fade-out');
-                video.play(); // Video starts from beginning
+                
+                // Play video reliably
+                let playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Auto-play was prevented:", error);
+                    });
+                }
 
-                // Calculate when video ends and show wave text
+                // When video ends, show wave text
                 video.onended = () => {
                     waveText.classList.add('active');
 
                     // After text zooms out and hides, restart full sequence
                     setTimeout(() => {
                         runTimelineSequence();
-                    }, 5000); // 5 seconds for text animation & pause before loop restart
+                    }, 5000);
                 };
 
             }, 3500);
