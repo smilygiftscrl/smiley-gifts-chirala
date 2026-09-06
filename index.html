@@ -71,6 +71,11 @@
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .slide:hover {
+            transform: scale(1.03);
         }
         .slide img {
             width: 100%;
@@ -80,6 +85,34 @@
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-250px * 4)); }
+        }
+        /* Fullscreen Modal for Clicked Image */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
         .contact-info p {
             font-size: 1.1rem;
@@ -106,9 +139,9 @@
 </head>
 <body>
 
-    <!-- Top Banner Image -->
+    <!-- Top Banner Image (PNG) -->
     <header>
-        <img src="banner.jpg" alt="Smiley Gifts Center Banner">
+        <img src="banner.png" alt="Smiley Gifts Center Banner">
     </header>
 
     <div class="container">
@@ -120,18 +153,18 @@
         <!-- Scrolling Photos / Gallery Section -->
         <div class="card">
             <h2>Our Gifts Gallery</h2>
-            <p>Check out some of our special items available at the store:</p>
+            <p>Click on any photo to view it in large size:</p>
             <div class="slider-container">
                 <div class="slider-track">
-                    <div class="slide"><img src="gift1.jpg" alt="Gift 1"></div>
-                    <div class="slide"><img src="gift2.jpg" alt="Gift 2"></div>
-                    <div class="slide"><img src="gift3.jpg" alt="Gift 3"></div>
-                    <div class="slide"><img src="gift4.jpg" alt="Gift 4"></div>
+                    <div class="slide" onclick="openModal('gift1.png')"><img src="gift1.png" alt="Gift 1"></div>
+                    <div class="slide" onclick="openModal('gift2.png')"><img src="gift2.png" alt="Gift 2"></div>
+                    <div class="slide" onclick="openModal('gift3.png')"><img src="gift3.png" alt="Gift 3"></div>
+                    <div class="slide" onclick="openModal('gift4.png')"><img src="gift4.png" alt="Gift 4"></div>
                     <!-- Repeating for smooth infinite scroll -->
-                    <div class="slide"><img src="gift1.jpg" alt="Gift 1"></div>
-                    <div class="slide"><img src="gift2.jpg" alt="Gift 2"></div>
-                    <div class="slide"><img src="gift3.jpg" alt="Gift 3"></div>
-                    <div class="slide"><img src="gift4.jpg" alt="Gift 4"></div>
+                    <div class="slide" onclick="openModal('gift1.png')"><img src="gift1.png" alt="Gift 1"></div>
+                    <div class="slide" onclick="openModal('gift2.png')"><img src="gift2.png" alt="Gift 2"></div>
+                    <div class="slide" onclick="openModal('gift3.png')"><img src="gift3.png" alt="Gift 3"></div>
+                    <div class="slide" onclick="openModal('gift4.png')"><img src="gift4.png" alt="Gift 4"></div>
                 </div>
             </div>
         </div>
@@ -141,13 +174,30 @@
             <p><strong>📍 Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, Andhra Pradesh - 523155</p>
             <p><strong>📞 Phone:</strong> <a href="tel:09133196199" style="color: #ff416c; text-decoration: none; font-weight: bold;">091331 96199</a></p>
             <p><strong>⏰ Hours:</strong> Open Daily - 10:00 AM to 10:00 PM</p>
-            <a href="tel:09133196199" class="btn">Call Now to Order</a>
+            <!-- Direct Call Button -->
+            <a href="tel:09133196199" class="btn">📞 Call Now to Order</a>
         </div>
+    </div>
+
+    <!-- Modal for Large Image View -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modalImg" src="" alt="Large View">
     </div>
 
     <footer>
         <p>&copy; 2026 Smiley Gifts Center, Chirala. Designed with Care.</p>
     </footer>
+
+    <script>
+        function openModal(imageSrc) {
+            document.getElementById('modalImg').src = imageSrc;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
