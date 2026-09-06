@@ -16,19 +16,18 @@
             color: #333;
             line-height: 1.6;
         }
+        /* Banner Header Styling */
         header {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            color: white;
-            padding: 40px 20px;
+            width: 100%;
+            background: #fff;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+        header img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            display: block;
         }
         .container {
             max-width: 1000px;
@@ -47,20 +46,40 @@
             margin-bottom: 15px;
             font-size: 1.8rem;
         }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .service-item {
-            background: #fff5f7;
-            padding: 20px;
+        /* Scrolling Gallery / Photos Section */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
             border-radius: 8px;
-            text-align: center;
-            border: 1px solid #ffd1dc;
-            font-weight: 600;
-            color: #d63031;
+            margin-top: 15px;
+            background: #fff5f7;
+            padding: 10px;
+        }
+        .slider-track {
+            display: flex;
+            width: calc(250px * 8);
+            animation: scroll 20s linear infinite;
+        }
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+        .slide {
+            width: 250px;
+            height: 180px;
+            margin-right: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 4)); }
         }
         .contact-info p {
             font-size: 1.1rem;
@@ -87,9 +106,9 @@
 </head>
 <body>
 
+    <!-- Top Banner Image -->
     <header>
-        <h1>😊 Smiley Gifts Center</h1>
-        <p>Your Ultimate Destination for Customised Gifts & Surprises in Chirala!</p>
+        <img src="banner.jpg" alt="Smiley Gifts Center Banner">
     </header>
 
     <div class="container">
@@ -98,20 +117,29 @@
             <p>Welcome to <strong>Smiley Gifts Center</strong>, located in the heart of Chirala (Polimera Rd, opposite HDFC Bank). We specialize in making your special occasions even more memorable with our wide range of personalized gifts, photo frames, birthday items, and unique surprise articles.</p>
         </div>
 
+        <!-- Scrolling Photos / Gallery Section -->
         <div class="card">
-            <h2>Our Specialties</h2>
-            <div class="services-grid">
-                <div class="service-item">🎁 Customised Gifts</div>
-                <div class="service-item">🖼️ Photo Frames</div>
-                <div class="service-item">🎂 Birthday & Anniversary Items</div>
-                <div class="service-item">✨ Surprise Articles</div>
+            <h2>Our Gifts Gallery</h2>
+            <p>Check out some of our special items available at the store:</p>
+            <div class="slider-container">
+                <div class="slider-track">
+                    <div class="slide"><img src="gift1.jpg" alt="Gift 1"></div>
+                    <div class="slide"><img src="gift2.jpg" alt="Gift 2"></div>
+                    <div class="slide"><img src="gift3.jpg" alt="Gift 3"></div>
+                    <div class="slide"><img src="gift4.jpg" alt="Gift 4"></div>
+                    <!-- Repeating for smooth infinite scroll -->
+                    <div class="slide"><img src="gift1.jpg" alt="Gift 1"></div>
+                    <div class="slide"><img src="gift2.jpg" alt="Gift 2"></div>
+                    <div class="slide"><img src="gift3.jpg" alt="Gift 3"></div>
+                    <div class="slide"><img src="gift4.jpg" alt="Gift 4"></div>
+                </div>
             </div>
         </div>
 
         <div class="card contact-info">
             <h2>Visit Us / Contact</h2>
             <p><strong>📍 Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, Andhra Pradesh - 523155</p>
-            <p><strong>📞 Phone:</strong> 091331 96199</p>
+            <p><strong>📞 Phone:</strong> <a href="tel:09133196199" style="color: #ff416c; text-decoration: none; font-weight: bold;">091331 96199</a></p>
             <p><strong>⏰ Hours:</strong> Open Daily - 10:00 AM to 10:00 PM</p>
             <a href="tel:09133196199" class="btn">Call Now to Order</a>
         </div>
