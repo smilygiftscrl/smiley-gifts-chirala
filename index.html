@@ -55,7 +55,26 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Background Video - Direct Autoplay */
+        /* 1. Original Banner (మీ ఫోల్డర్ లోని banner) */
+        .original-shop-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('banner');
+            background-size: cover;
+            background-position: center;
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .original-shop-banner.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 2. Background Video (మీ ఫోల్డర్ లోని వీడియో) */
         .banner-video {
             position: absolute;
             top: 50%;
@@ -77,6 +96,44 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.3);
             z-index: 2;
+        }
+
+        /* 3. Ending Wave Text Effect */
+        .wave-text-container {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            gap: 3px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .wave-text-container.active {
+            opacity: 1;
+            animation: finalZoomOut 1s ease 4s forwards;
+        }
+
+        .wave-letter {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px #000, 0 0 15px rgba(212,175,55,0.8);
+            display: inline-block;
+            animation: waveMotion 0.6s ease-in-out infinite alternate;
+        }
+        .wave-letter:nth-child(odd) { animation-delay: 0.1s; }
+        .wave-letter:nth-child(even) { animation-delay: 0.2s; }
+
+        @keyframes waveMotion {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        @keyframes finalZoomOut {
+            0% { transform: translateX(-50%) scale(1); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1.5); opacity: 0; }
         }
 
         /* --- WEBSITE BODY CONTENT --- */
@@ -267,25 +324,71 @@
 </head>
 <body>
 
+    <!-- Professional Top Header -->
     <header>
         <h1>🎁 SMILEY GIFTS CENTER</h1>
         <a href="tel:09133196199" class="header-phone">📞 91331 96199</a>
     </header>
 
+    <!-- Banner & Video Timeline Flow -->
     <div class="banner-container">
-        <video autoplay muted loop playsinline class="banner-video">
-            <source src="last_lo_humen_photofrmes_enka.mp4" type="video/mp4">
+        <!-- 1. Original Shop Banner -->
+        <div id="shopBanner" class="original-shop-banner"></div>
+
+        <!-- 2. Background Video -->
+        <video id="bgVideo" muted playsinline class="banner-video">
+            <source src="last_lo_humen_photofrmes_enka" type="video/mp4">
             Your browser does not support the video tag.
         </video>
+
         <div class="banner-overlay"></div>
+
+        <!-- 3. Ending Wave & Zoom Text -->
+        <div id="waveText" class="wave-text-container">
+            <span class="wave-letter">S</span>
+            <span class="wave-letter">m</span>
+            <span class="wave-letter">i</span>
+            <span class="wave-letter">l</span>
+            <span class="wave-letter">e</span>
+            <span class="wave-letter">y</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">G</span>
+            <span class="wave-letter">i</span>
+            <span class="wave-letter">f</span>
+            <span class="wave-letter">t</span>
+            <span class="wave-letter">s</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">&amp;</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">P</span>
+            <span class="wave-letter">e</span>
+            <span class="wave-letter">r</span>
+            <span class="wave-letter">f</span>
+            <span class="wave-letter">u</span>
+            <span class="wave-letter">m</span>
+            <span class="wave-letter">e</span>
+            <span class="wave-letter">s</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">-</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">C</span>
+            <span class="wave-letter">h</span>
+            <span class="wave-letter">i</span>
+            <span class="wave-letter">r</span>
+            <span class="wave-letter">a</span>
+            <span class="wave-letter">l</span>
+            <span class="wave-letter">a</span>
+        </div>
     </div>
 
     <div class="container">
+        <!-- About Us -->
         <div class="card">
             <h2>Welcome to Smiley Gifts Center</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #555;">Located in <strong>Chirala (Polimera Rd, opposite HDFC Bank)</strong>. We bring your special moments to life with stunning photo frames, god idols, giant teddy bears, and luxury perfumes.</p>
         </div>
 
+        <!-- GIFTS GALLERY -->
         <div class="card">
             <h2>Trending Gifts &amp; Perfumes Showcase</h2>
             <p style="text-align: center; margin-bottom: 20px; font-weight: 500; color: #666;">Click on any item to view full screen, or use buttons to move left/right:</p>
@@ -294,24 +397,24 @@
                 <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
                 
                 <div class="gallery-container" id="galleryContainer">
-                    <div class="scroll-item" onclick="openModal('teddy.png', 'Giant Teddy Bear')">
-                        <img src="teddy.png" alt="Teddy" onerror="this.src='https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss', 'Giant Teddy Bear')">
+                        <img src="teddyss" alt="Teddy" onerror="this.src='https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400'">
                         Giant Teddy Bear
                     </div>
-                    <div class="scroll-item" onclick="openModal('frame.png', 'Custom Golden Photo Frame')">
-                        <img src="frame.png" alt="Frame" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss', 'Custom Golden Photo Frame')">
+                        <img src="teddyss" alt="Frame" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400'">
                         Golden Photo Frame
                     </div>
-                    <div class="scroll-item" onclick="openModal('perfume.png', 'Luxury Branded Perfume')">
-                        <img src="perfume.png" alt="Perfume" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss', 'Luxury Branded Perfume')">
+                        <img src="teddyss" alt="Perfume" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400'">
                         Luxury Perfume
                     </div>
-                    <div class="scroll-item" onclick="openModal('godidol.png', 'Divine God Idol Frame')">
-                        <img src="godidol.png" alt="God Idol" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss', 'Divine God Idol Frame')">
+                        <img src="teddyss" alt="God Idol" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400'">
                         God Idol Frame
                     </div>
-                    <div class="scroll-item" onclick="openModal('couple.png', 'Couple Love Showpiece')">
-                        <img src="couple.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss', 'Couple Love Showpiece')">
+                        <img src="teddyss" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
                         Couple Love Showpiece
                     </div>
                 </div>
@@ -320,6 +423,7 @@
             </div>
         </div>
 
+        <!-- Contact & Address Section -->
         <div class="contact-box">
             <h2>Visit Us / Direct Contact</h2>
             <div class="contact-details">
@@ -330,6 +434,7 @@
         </div>
     </div>
 
+    <!-- Modal Popup (Zoom Image) -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-btn">&times;</span>
         <img id="modalImg" src="" alt="Zoomed Image">
@@ -362,6 +467,41 @@
                 behavior: 'smooth'
             });
         }
+
+        const banner = document.getElementById('shopBanner');
+        const video = document.getElementById('bgVideo');
+        const waveText = document.getElementById('waveText');
+
+        function runTimelineSequence() {
+            banner.classList.remove('fade-out');
+            waveText.classList.remove('active');
+            video.pause();
+            video.currentTime = 0;
+
+            setTimeout(() => {
+                banner.classList.add('fade-out');
+                
+                let playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Auto-play prevented:", error);
+                    });
+                }
+
+                video.onended = () => {
+                    waveText.classList.add('active');
+
+                    setTimeout(() => {
+                        runTimelineSequence();
+                    }, 5000);
+                };
+
+            }, 3500);
+        }
+
+        window.onload = () => {
+            runTimelineSequence();
+        };
     </script>
 
 </body>
