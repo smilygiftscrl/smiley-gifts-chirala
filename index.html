@@ -17,7 +17,7 @@
             line-height: 1.6;
         }
 
-        /* --- LUXURY ANIMATED SHOP BANNER --- */
+        /* --- SHOP BANNER --- */
         .shop-banner {
             width: 100%;
             background: linear-gradient(135deg, #e60000 0%, #990000 100%);
@@ -60,7 +60,7 @@
 
         .banner-title-area {
             position: relative;
-            margin: 10px 0 20px 0;
+            margin: 10px 0 15px 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -90,70 +90,79 @@
             text-align: left;
         }
 
-        /* --- BIG DYNAMIC GIFT SHOWCASE ANIMATION SECTION --- */
-        .gift-showcase-stage {
+        /* --- BIG OPENING GIFT STAGE ANIMATION --- */
+        .gift-open-stage {
             width: 100%;
-            height: 140px;
+            height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            margin-top: 10px;
-            background: rgba(0, 0, 0, 0.15);
+            margin-top: 15px;
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 15px;
-            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
         }
 
-        .animated-gift-box {
+        .gift-container {
             position: absolute;
-            font-size: 4.5rem;
-            animation: giftCycle 12s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: giftSequence 16s infinite;
             opacity: 0;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5));
         }
 
-        /* Timing delays for each large gift item to pop up, open, and vanish */
-        .item-1 { animation-delay: 0s; }   /* God Idol / Temple */
-        .item-2 { animation-delay: 3s; }   /* Photo Frame */
-        .item-3 { animation-delay: 6s; }   /* Teddy Bear */
-        .item-4 { animation-delay: 9s; }   /* Perfume & Luxury Gifts */
+        /* Sequential timing for each big gift */
+        .seq-1 { animation-delay: 0s; }
+        .seq-2 { animation-delay: 4s; }
+        .seq-3 { animation-delay: 8s; }
+        .seq-4 { animation-delay: 12s; }
 
-        @keyframes giftCycle {
-            0% {
-                transform: scale(0.3) translateY(30px);
-                opacity: 0;
-            }
-            15% {
-                transform: scale(1.3) translateY(0px);
-                opacity: 1;
-            }
-            30% {
-                transform: scale(1.1) translateY(-10px);
-                opacity: 1;
-            }
-            40% {
-                transform: scale(1.5) translateY(-20px);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(0.2) translateY(-40px);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(0.3) translateY(30px);
-                opacity: 0;
-            }
+        .box-icon {
+            font-size: 4.5rem;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            animation: boxShake 0.8s ease-in-out infinite alternate;
         }
 
-        .stage-label {
+        .revealed-gift {
+            font-size: 5.5rem;
             position: absolute;
-            bottom: 5px;
-            font-size: 0.9rem;
-            color: #ffebee;
-            letter-spacing: 1px;
-            background: rgba(0,0,0,0.3);
-            padding: 2px 12px;
-            border-radius: 10px;
+            animation: popOutGift 4s ease-in-out infinite;
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.6));
+        }
+
+        /* Animations for opening and popping out */
+        @keyframes giftSequence {
+            0% { opacity: 0; transform: scale(0.5); }
+            5% { opacity: 1; transform: scale(1); }
+            22% { opacity: 1; transform: scale(1.1); }
+            25% { opacity: 0; transform: scale(1.3) translateY(-20px); }
+            100% { opacity: 0; }
+        }
+
+        @keyframes boxShake {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+
+        @keyframes popOutGift {
+            0% { transform: translateY(20px) scale(0.3); opacity: 0; }
+            30% { transform: translateY(-25px) scale(1.2); opacity: 1; }
+            70% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(-40px) scale(0.8); opacity: 0; }
+        }
+
+        .stage-title {
+            position: absolute;
+            bottom: 6px;
+            font-size: 0.95rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 3px 15px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            font-weight: bold;
         }
 
         /* --- WEBSITE BODY --- */
@@ -228,14 +237,14 @@
             .brand-gifts { font-size: 2.3rem; }
             .smiley-logo { font-size: 3.2rem; }
             .phone-badge { font-size: 1rem; }
-            .gift-showcase-stage { height: 110px; }
-            .animated-gift-box { font-size: 3.5rem; }
+            .gift-open-stage { height: 140px; }
+            .revealed-gift { font-size: 4.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Luxury Shop Banner with Big Dynamic Gift Animations -->
+    <!-- Banner -->
     <header class="shop-banner">
         <div class="banner-top-bar">
             <a href="tel:09133196199" class="phone-badge">
@@ -250,13 +259,30 @@
                 <div class="brand-gifts">Gifts &amp; <br>Perfumes</div>
             </div>
 
-            <!-- Big Interactive Gift Opening Stage -->
-            <div class="gift-showcase-stage">
-                <div class="animated-gift-box item-1">🏛️ ✨</div>
-                <div class="animated-gift-box item-2">🖼️ 💖</div>
-                <div class="animated-gift-box item-3">🧸 🎁</div>
-                <div class="animated-gift-box item-4">🧴 ✨</div>
-                <div class="stage-label">✨ Special Surprise Gifts Collection ✨</div>
+            <!-- Big Gift Opening & Popping Animation Stage -->
+            <div class="gift-open-stage">
+                <!-- Gift 1: God Idol -->
+                <div class="gift-container seq-1">
+                    <div class="box-icon">🎁</div>
+                    <div class="revealed-gift">🏛️✨</div>
+                </div>
+                <!-- Gift 2: Photo Frame -->
+                <div class="gift-container seq-2">
+                    <div class="box-icon">🎁</div>
+                    <div class="revealed-gift">🖼️💖</div>
+                </div>
+                <!-- Gift 3: Teddy Bear -->
+                <div class="gift-container seq-3">
+                    <div class="box-icon">🎁</div>
+                    <div class="revealed-gift">🧸🎈</div>
+                </div>
+                <!-- Gift 4: Perfume -->
+                <div class="gift-container seq-4">
+                    <div class="box-icon">🎁</div>
+                    <div class="revealed-gift">🧴✨</div>
+                </div>
+                
+                <div class="stage-title">✨ Grand Gifts Open & Surprise Collection ✨</div>
             </div>
         </div>
     </header>
