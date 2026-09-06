@@ -45,36 +45,17 @@
             background: #fff;
         }
 
-        /* --- HERO BANNER & VIDEO TIMELINE --- */
+        /* --- BANNER & VIDEO SECTION --- */
         .banner-container {
             width: 100%;
             height: 520px;
             position: relative;
             overflow: hidden;
-            background: #111;
+            background: #000;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* 1. Original Shop Banner */
-        .original-shop-banner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('banner.png');
-            background-size: cover;
-            background-position: center;
-            z-index: 10;
-            opacity: 1;
-            transition: opacity 0.8s ease-in-out;
-        }
-        .original-shop-banner.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* 2. Background Video */
+        /* Background Video - Direct Autoplay */
         .banner-video {
             position: absolute;
             top: 50%;
@@ -94,46 +75,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.3);
             z-index: 2;
-        }
-
-        /* 3. Ending Wave & Zoom Text Effect */
-        .wave-text-container {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            display: flex;
-            gap: 3px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .wave-text-container.active {
-            opacity: 1;
-            animation: finalZoomOut 1s ease 4s forwards;
-        }
-
-        .wave-letter {
-            font-size: 2.3rem;
-            font-weight: 900;
-            color: #d4af37;
-            text-shadow: 2px 2px 4px #000, 0 0 15px rgba(212,175,55,0.8);
-            display: inline-block;
-            animation: waveMotion 0.6s ease-in-out infinite alternate;
-        }
-        .wave-letter:nth-child(odd) { animation-delay: 0.1s; }
-        .wave-letter:nth-child(even) { animation-delay: 0.2s; }
-
-        @keyframes waveMotion {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
-        }
-
-        @keyframes finalZoomOut {
-            0% { transform: translateX(-50%) scale(1); opacity: 1; }
-            100% { transform: translateX(-50%) scale(1.5); opacity: 0; }
         }
 
         /* --- WEBSITE BODY CONTENT --- */
@@ -330,50 +273,11 @@
     </header>
 
     <div class="banner-container">
-        <div id="shopBanner" class="original-shop-banner"></div>
-
-        <video id="bgVideo" autoplay muted playsinline class="banner-video">
+        <video autoplay muted loop playsinline class="banner-video">
             <source src="last_lo_humen_photofrmes_enka.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-
         <div class="banner-overlay"></div>
-
-        <div id="waveText" class="wave-text-container">
-            <span class="wave-letter">S</span>
-            <span class="wave-letter">m</span>
-            <span class="wave-letter">i</span>
-            <span class="wave-letter">l</span>
-            <span class="wave-letter">e</span>
-            <span class="wave-letter">y</span>
-            <span class="wave-letter">&nbsp;</span>
-            <span class="wave-letter">G</span>
-            <span class="wave-letter">i</span>
-            <span class="wave-letter">f</span>
-            <span class="wave-letter">t</span>
-            <span class="wave-letter">s</span>
-            <span class="wave-letter">&nbsp;</span>
-            <span class="wave-letter">&amp;</span>
-            <span class="wave-letter">&nbsp;</span>
-            <span class="wave-letter">P</span>
-            <span class="wave-letter">e</span>
-            <span class="wave-letter">r</span>
-            <span class="wave-letter">f</span>
-            <span class="wave-letter">u</span>
-            <span class="wave-letter">m</span>
-            <span class="wave-letter">e</span>
-            <span class="wave-letter">s</span>
-            <span class="wave-letter">&nbsp;</span>
-            <span class="wave-letter">-</span>
-            <span class="wave-letter">&nbsp;</span>
-            <span class="wave-letter">C</span>
-            <span class="wave-letter">h</span>
-            <span class="wave-letter">i</span>
-            <span class="wave-letter">r</span>
-            <span class="wave-letter">a</span>
-            <span class="wave-letter">l</span>
-            <span class="wave-letter">a</span>
-        </div>
     </div>
 
     <div class="container">
@@ -458,41 +362,6 @@
                 behavior: 'smooth'
             });
         }
-
-        const banner = document.getElementById('shopBanner');
-        const video = document.getElementById('bgVideo');
-        const waveText = document.getElementById('waveText');
-
-        function runTimelineSequence() {
-            banner.classList.remove('fade-out');
-            waveText.classList.remove('active');
-            video.pause();
-            video.currentTime = 0;
-
-            setTimeout(() => {
-                banner.classList.add('fade-out');
-                
-                let playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.log("Auto-play prevented:", error);
-                    });
-                }
-
-                video.onended = () => {
-                    waveText.classList.add('active');
-
-                    setTimeout(() => {
-                        runTimelineSequence();
-                    }, 5000);
-                };
-
-            }, 3500);
-        }
-
-        window.onload = () => {
-            runTimelineSequence();
-        };
     </script>
 
 </body>
