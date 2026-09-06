@@ -17,25 +17,61 @@
             line-height: 1.6;
         }
 
-        /* --- SHOP BANNER --- */
+        /* --- SHOP BANNER WITH VIDEO BACKGROUND --- */
         .shop-banner {
             width: 100%;
-            background: linear-gradient(135deg, #e60000 0%, #990000 100%);
-            padding: 25px 15px;
+            height: 450px; /* బ్యానర్ హైట్ */
             position: relative;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             border-bottom: 6px solid #004d00;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        /* Background Video Styling */
+        .banner-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* Dark overlay so text is clearly visible on video */
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 2;
+        }
+
+        /* Content inside banner on top of video */
+        .banner-top-bar, .banner-main-content {
+            position: relative;
+            z-index: 3;
         }
 
         .banner-top-bar {
             display: flex;
             justify-content: flex-end;
             max-width: 1200px;
-            margin: 0 auto 15px auto;
+            width: 100%;
+            margin: 0 auto;
         }
+
         .phone-badge {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
             color: #ffffff;
             padding: 8px 18px;
             border-radius: 50px;
@@ -45,28 +81,15 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.6);
         }
 
-        .banner-main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .banner-main-content {
+            text-align: center;
             max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        /* Brand Title */
-        .banner-title-area {
-            position: relative;
-            margin: 10px 0 15px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
         .brand-smiley {
             font-size: 3.5rem;
             font-weight: 900;
@@ -74,159 +97,10 @@
             text-shadow: 3px 3px 0px #000;
         }
         .brand-gifts {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: #ffeb3b;
             text-shadow: 3px 3px 0px #b71c1c;
-            text-align: left;
-        }
-
-        /* --- GIFT BOX ANIMATION STAGE --- */
-        .animation-stage {
-            width: 100%;
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-top: 10px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            overflow: hidden;
-            box-shadow: inset 0 0 25px rgba(0,0,0,0.7);
-        }
-
-        /* Big Gift Box */
-        .big-gift-box {
-            position: absolute;
-            font-size: 7rem;
-            animation: boxOpenSequence 12s forwards infinite;
-            z-index: 10;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.8));
-        }
-
-        /* Items coming out of box and arranging side-by-side */
-        .showcase-item {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            z-index: 5;
-        }
-        .showcase-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid #ffeb3b;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-            background: #fff;
-        }
-        .item-label {
-            color: #fff;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-top: 4px;
-            text-shadow: 1px 1px 3px #000;
-            background: rgba(0,0,0,0.6);
-            padding: 2px 8px;
-            border-radius: 6px;
-        }
-
-        /* Sparkle/Spray effect for Perfume */
-        .spray-sparkle {
-            position: absolute;
-            font-size: 1.8rem;
-            top: 20px;
-            left: 70px;
-            animation: sprayAnim 12s infinite;
-            opacity: 0;
-            z-index: 12;
-        }
-
-        /* --- ANIMATION TIMINGS & POSITIONS --- */
-        
-        /* 1. Teddy Bear pops out and moves to Left (Slot 1) */
-        .item-teddy {
-            animation: item1Sequence 12s infinite;
-        }
-        /* 2. God Frame pops out and moves next to Teddy (Slot 2) */
-        .item-godframe {
-            animation: item2Sequence 12s infinite;
-        }
-        /* 3. Love Gift pops out and moves next to God Frame (Slot 3) */
-        .item-lovegift {
-            animation: item3Sequence 12s infinite;
-        }
-        /* 4. Perfume pops out, sprays, and stays at Right (Slot 4) */
-        .item-perfume {
-            animation: item4Sequence 12s infinite;
-        }
-
-        @keyframes boxOpenSequence {
-            0% { transform: scale(0.3); opacity: 0; }
-            15% { transform: scale(1.2); opacity: 1; }
-            22% { transform: scale(1) rotate(10deg); opacity: 1; }
-            28% { transform: scale(1.4) translateY(-30px); opacity: 0; } /* Box opens & disappears */
-            90% { opacity: 0; }
-            100% { transform: scale(0.3); opacity: 0; }
-        }
-
-        @keyframes item1Sequence {
-            0% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            28% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            35% { transform: scale(1.1) translateY(0) translateX(0); opacity: 1; }
-            45% { transform: scale(1) translateY(0) translateX(-150px); opacity: 1; } /* Moves to Left slot */
-            90% { transform: scale(1) translateY(0) translateX(-150px); opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        @keyframes item2Sequence {
-            0% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            35% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            42% { transform: scale(1.1) translateY(0) translateX(0); opacity: 1; }
-            52% { transform: scale(1) translateY(0) translateX(-50px); opacity: 1; } /* Moves next to Teddy */
-            90% { transform: scale(1) translateY(0) translateX(-50px); opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        @keyframes item3Sequence {
-            0% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            45% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            52% { transform: scale(1.1) translateY(0) translateX(0); opacity: 1; }
-            62% { transform: scale(1) translateY(0) translateX(50px); opacity: 1; } /* Moves next to God Frame */
-            90% { transform: scale(1) translateY(0) translateX(50px); opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        @keyframes item4Sequence {
-            0% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            55% { transform: scale(0.2) translateY(50px); opacity: 0; }
-            62% { transform: scale(1.1) translateY(0) translateX(0); opacity: 1; }
-            72% { transform: scale(1) translateY(0) translateX(150px); opacity: 1; } /* Moves to Right slot */
-            90% { transform: scale(1) translateY(0) translateX(150px); opacity: 1; }
-            100% { opacity: 0; }
-        }
-
-        @keyframes sprayAnim {
-            0%, 65% { opacity: 0; transform: scale(0.5) translate(0, 0); }
-            72% { opacity: 1; transform: scale(1.3) translate(30px, -20px); text-shadow: 0 0 15px #ffeb3b; }
-            85% { opacity: 0; transform: scale(0.8) translate(60px, -40px); }
-            100% { opacity: 0; }
-        }
-
-        .stage-title {
-            position: absolute;
-            bottom: 5px;
-            font-size: 0.9rem;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 2px 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            z-index: 15;
         }
 
         /* --- WEBSITE BODY CONTENT --- */
@@ -247,6 +121,7 @@
             margin-bottom: 15px;
             font-size: 1.8rem;
         }
+
         .gifts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -278,7 +153,7 @@
             border: 3px solid #ff416c;
         }
 
-        /* Modal Popup when clicked */
+        /* Modal Popup */
         .modal {
             display: none;
             position: fixed;
@@ -336,55 +211,28 @@
 </head>
 <body>
 
-    <!-- Shop Banner -->
+    <!-- Shop Banner with Direct Video Background -->
     <header class="shop-banner">
+        <!-- మీ వీడియో ఫైల్ పేరు నేరుగా ఇక్కడ సెట్ చేయబడింది -->
+        <video autoplay muted loop playsinline class="banner-video">
+            <source src="last_lo_humen_photofrmes_enka.mp4" type="video/mp4">
+            మీ బ్రౌజర్ వీడియో ట్యాగ్‌ని సపోర్ట్ చేయడం లేదు.
+        </video>
+
+        <!-- Dark Shadow Overlay -->
+        <div class="banner-overlay"></div>
+
+        <!-- Top Bar with Phone Number -->
         <div class="banner-top-bar">
             <a href="tel:09133196199" class="phone-badge">
                 📞 91331 96199
             </a>
         </div>
 
-        <div class="banner-main">
-            <!-- Brand Title -->
-            <div class="banner-title-area">
-                <div class="brand-smiley">👍 Smiley</div>
-                <div class="brand-gifts">Gifts &amp; <br>Perfumes</div>
-            </div>
-
-            <!-- Gift Box & Popping Sequence Stage -->
-            <div class="animation-stage">
-                <!-- Big Gift Box opening -->
-                <div class="big-gift-box">🎁📦</div>
-
-                <!-- 1. Teddy Bear -->
-                <div class="showcase-item item-teddy">
-                    <img src="https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400" alt="Teddy">
-                    <div class="item-label">Teddy Bear</div>
-                </div>
-
-                <!-- 2. God Venkateswara Frame -->
-                <div class="showcase-item item-godframe">
-                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400" alt="God Frame">
-                    <div class="item-label">God Frame</div>
-                </div>
-
-                <!-- 3. Love Gift Symbol -->
-                <div class="showcase-item item-lovegift">
-                    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Love Gift">
-                    <div class="item-label">Love Gift</div>
-                </div>
-
-                <!-- 4. Perfume Bottle with Spray & Stars -->
-                <div class="showcase-item item-perfume">
-                    <div style="position:relative;">
-                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400" alt="Perfume">
-                        <span class="spray-sparkle">✨🌟💫🎉</span>
-                    </div>
-                    <div class="item-label">Luxury Perfume</div>
-                </div>
-
-                <div class="stage-title">✨ Grand Surprise Box Opening ✨</div>
-            </div>
+        <!-- Banner Main Title -->
+        <div class="banner-main-content">
+            <div class="brand-smiley">👍 Smiley Gifts &amp; Perfumes</div>
+            <div class="brand-gifts">Chirala</div>
         </div>
     </header>
 
@@ -395,12 +243,12 @@
             <p>Welcome to <strong>Smiley Gifts Center</strong>, located in Chirala (Polimera Rd, opposite HDFC Bank). We bring your special moments to life with stunning photo frames, god idols, giant teddy bears, and luxury perfumes.</p>
         </div>
 
-        <!-- Products Showcase with Zoom (Lightbox) -->
+        <!-- Products Showcase -->
         <div class="card">
             <h2>Our Premium Gifts Showcase</h2>
             <p>Click on any item below to view in full screen:</p>
             <div class="gifts-grid">
-                <div class="gift-box-item" onclick="openModal('https://images.unsplash.com/photo-1559454403-w=800', 'Giant Teddy Bears')">
+                <div class="gift-box-item" onclick="openModal('https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=800', 'Giant Teddy Bears')">
                     <img src="https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400" alt="Teddy">
                     Giant Teddy Bears
                 </div>
