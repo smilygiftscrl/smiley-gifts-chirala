@@ -71,7 +71,7 @@
 
         .smiley-logo {
             font-size: 4.5rem;
-            animation: waveInLogo 2s ease-out forwards;
+            animation: waveInLogo 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.4));
         }
 
@@ -94,19 +94,20 @@
             animation: waveInRight 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* --- REALISTIC GIFTS & SPRAY ANIMATION STAGE --- */
+        /* --- 3D REALISTIC GIFTS & BOX ANIMATION STAGE --- */
         .realistic-stage {
             width: 100%;
-            height: 180px;
+            height: 210px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             margin-top: 10px;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
             border: 2px solid rgba(255, 255, 255, 0.4);
             overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
 
         .showcase-item {
@@ -114,32 +115,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             opacity: 0;
-            animation: cycleRealisticGifts 20s infinite;
+            animation: cycle3DGifts 20s infinite;
         }
 
-        /* Sequence Timings for Realistic Items */
-        .item-god { animation-delay: 0s; }
+        /* Sequence Timings for 3D Realistic Items */
+        .item-teddy { animation-delay: 0s; }
         .item-frame { animation-delay: 5s; }
-        .item-teddy { animation-delay: 10s; }
+        .item-god { animation-delay: 10s; }
         .item-perfume { animation-delay: 15s; }
 
         .realistic-img {
-            width: 110px;
-            height: 110px;
-            object-fit: contain;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 15px;
+            background: #fff;
+            padding: 5px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), 0 0 20px rgba(255,235,59,0.5);
             border: 3px solid #ffeb3b;
+            transform: perspective(600px) rotateY(10deg);
         }
 
         /* Perfume Spray & Sparkle Effect */
         .spray-sparkles {
             position: absolute;
-            font-size: 2rem;
+            font-size: 2.2rem;
             animation: sprayEffect 1.5s ease-out infinite;
             display: none;
         }
@@ -161,28 +163,28 @@
             100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
-        @keyframes cycleRealisticGifts {
-            0% { opacity: 0; transform: scale(0.3) translateY(30px); }
-            10% { opacity: 1; transform: scale(1.1) translateY(0); }
-            20% { opacity: 1; transform: scale(1) translateY(0); }
-            22% { opacity: 0; transform: scale(1.2) translateY(-20px); }
+        @keyframes cycle3DGifts {
+            0% { opacity: 0; transform: scale(0.4) translateY(40px); }
+            12% { opacity: 1; transform: scale(1.15) translateY(0); }
+            22% { opacity: 1; transform: scale(1) translateY(0); }
+            25% { opacity: 0; transform: scale(1.3) translateY(-25px); }
             100% { opacity: 0; }
         }
 
         @keyframes sprayEffect {
-            0% { transform: translate(30px, -10px) scale(0.5); opacity: 0; }
-            50% { transform: translate(70px, -30px) scale(1.3); opacity: 1; text-shadow: 0 0 15px #ffeb3b; }
-            100% { transform: translate(100px, -50px) scale(0.8); opacity: 0; }
+            0% { transform: translate(30px, -15px) scale(0.5); opacity: 0; }
+            50% { transform: translate(80px, -40px) scale(1.4); opacity: 1; text-shadow: 0 0 20px #ffeb3b; }
+            100% { transform: translate(120px, -60px) scale(0.8); opacity: 0; }
         }
 
         .stage-title {
             position: absolute;
-            bottom: 5px;
-            font-size: 0.9rem;
+            bottom: 6px;
+            font-size: 0.95rem;
             color: #fff;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 3px 15px;
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4px 18px;
+            border-radius: 12px;
             letter-spacing: 0.5px;
             font-weight: bold;
         }
@@ -229,13 +231,15 @@
             background: #ffebee;
         }
         .gift-box-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 10px;
             margin-bottom: 12px;
             display: block;
             margin-left: auto;
             margin-right: auto;
+            border: 2px solid #ff416c;
         }
 
         .btn {
@@ -263,8 +267,8 @@
             .brand-gifts { font-size: 2.1rem; }
             .smiley-logo { font-size: 3rem; }
             .phone-badge { font-size: 1rem; }
-            .realistic-stage { height: 150px; }
-            .realistic-img { width: 90px; height: 90px; }
+            .realistic-stage { height: 160px; }
+            .realistic-img { width: 100px; height: 100px; }
         }
     </style>
 </head>
@@ -286,36 +290,36 @@
                 <div class="brand-gifts">Gifts &amp; <br>Perfumes</div>
             </div>
 
-            <!-- Realistic Items & Spray Animation Stage -->
+            <!-- 3D Realistic Teddy, Frames & Spray Stage -->
             <div class="realistic-stage">
-                <!-- 1. God Idols -->
-                <div class="showcase-item item-god">
-                    <img src="https://images.unsplash.com/photo-1606851094095-d14699564037?w=300" alt="God Idol" class="realistic-img">
-                    <div style="color:white; font-size:1.5rem; font-weight:bold; text-shadow:2px 2px 4px #000;">Divine God Idols ✨</div>
-                </div>
-
-                <!-- 2. Photo Frames -->
-                <div class="showcase-item item-frame">
-                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300" alt="Photo Frame" class="realistic-img">
-                    <div style="color:white; font-size:1.5rem; font-weight:bold; text-shadow:2px 2px 4px #000;">Custom Photo Frames 🖼️</div>
-                </div>
-
-                <!-- 3. Teddy Bears -->
+                <!-- 1. Real 3D Teddy Bear -->
                 <div class="showcase-item item-teddy">
-                    <img src="https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=300" alt="Teddy Bear" class="realistic-img">
-                    <div style="color:white; font-size:1.5rem; font-weight:bold; text-shadow:2px 2px 4px #000;">Cute Teddy Bears 🧸</div>
+                    <img src="https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400" alt="Teddy Bear" class="realistic-img">
+                    <div style="color:white; font-size:1.6rem; font-weight:bold; text-shadow:2px 2px 6px #000;">Cute 3D Teddy Bears 🧸</div>
                 </div>
 
-                <!-- 4. Perfume Bottle with Spray Effect -->
+                <!-- 2. Real Photo Frames -->
+                <div class="showcase-item item-frame">
+                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400" alt="Photo Frame" class="realistic-img">
+                    <div style="color:white; font-size:1.6rem; font-weight:bold; text-shadow:2px 2px 6px #000;">Custom Photo Frames 🖼️</div>
+                </div>
+
+                <!-- 3. Divine God Idols -->
+                <div class="showcase-item item-god">
+                    <img src="https://images.unsplash.com/photo-1606851094095-d14699564037?w=400" alt="God Idol" class="realistic-img">
+                    <div style="color:white; font-size:1.6rem; font-weight:bold; text-shadow:2px 2px 6px #000;">Divine God Idols ✨</div>
+                </div>
+
+                <!-- 4. Perfume Bottle with Sparkle Spray -->
                 <div class="showcase-item item-perfume">
                     <div style="position:relative;">
-                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300" alt="Perfume" class="realistic-img">
-                        <span class="spray-sparkles">✨🌟💫</span>
+                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400" alt="Perfume" class="realistic-img">
+                        <span class="spray-sparkles">✨🌟💫🎉</span>
                     </div>
-                    <div style="color:white; font-size:1.5rem; font-weight:bold; text-shadow:2px 2px 4px #000;">Luxury Perfumes 🧴</div>
+                    <div style="color:white; font-size:1.6rem; font-weight:bold; text-shadow:2px 2px 6px #000;">Luxury Perfumes 🧴</div>
                 </div>
 
-                <div class="stage-title">✨ Real-Life Premium Gifts Collection ✨</div>
+                <div class="stage-title">✨ 3D Realistic Surprise Gifts Collection ✨</div>
             </div>
         </div>
     </header>
@@ -324,7 +328,7 @@
         <!-- About Us -->
         <div class="card">
             <h2>About Us</h2>
-            <p>Welcome to <strong>Smiley Gifts Center</strong>, located in the heart of Chirala (Polimera Rd, opposite HDFC Bank). We specialize in making your special occasions unforgettable with our grand collection of real photo frames, god idols, custom gifts, and luxury perfumes.</p>
+            <p>Welcome to <strong>Smiley Gifts Center</strong>, located in the heart of Chirala (Polimera Rd, opposite HDFC Bank). We specialize in making your special occasions unforgettable with our grand collection of 3D photo frames, god idols, giant teddy bears, and luxury perfumes.</p>
         </div>
 
         <!-- Realistic Products Grid -->
@@ -333,19 +337,19 @@
             <p>Choose from our wide range of high-quality items:</p>
             <div class="gifts-grid">
                 <div class="gift-box-item">
-                    <img src="https://images.unsplash.com/photo-1606851094095-d14699564037?w=200" alt="God Idols">
-                    God Idols & Temples
-                </div>
-                <div class="gift-box-item">
-                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=200" alt="Frames">
-                    Custom Photo Frames
-                </div>
-                <div class="gift-box-item">
-                    <img src="https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=200" alt="Teddy">
+                    <img src="https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=300" alt="Teddy">
                     Giant Teddy Bears
                 </div>
                 <div class="gift-box-item">
-                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=200" alt="Perfumes">
+                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300" alt="Frames">
+                    Custom Photo Frames
+                </div>
+                <div class="gift-box-item">
+                    <img src="https://images.unsplash.com/photo-1606851094095-d14699564037?w=300" alt="God Idols">
+                    God Idols & Temples
+                </div>
+                <div class="gift-box-item">
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300" alt="Perfumes">
                     Branded Perfumes
                 </div>
             </div>
