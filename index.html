@@ -17,7 +17,7 @@
             line-height: 1.6;
         }
 
-        /* --- PROFESSIONAL HEADER / TOP BAR --- */
+        /* --- PROFESSIONAL HEADER --- */
         header {
             background: #1a1a1a;
             color: #ffffff;
@@ -45,7 +45,7 @@
             background: #fff;
         }
 
-        /* --- HERO BANNER & SLIDER CONTROLS --- */
+        /* --- HERO BANNER & VIDEO (Original Flow) --- */
         .banner-container {
             width: 100%;
             height: 520px;
@@ -55,7 +55,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Original Shop Banner */
         .original-shop-banner {
             position: absolute;
             top: 0;
@@ -73,7 +72,6 @@
             visibility: hidden;
         }
 
-        /* Background Video */
         .banner-video {
             position: absolute;
             top: 50%;
@@ -96,29 +94,6 @@
             background: rgba(0, 0, 0, 0.35);
             z-index: 2;
         }
-
-        /* --- MANUAL & AUTO SLIDER CONTROLS (ముందుకు, వెనక్కి వెళ్లే బటన్స్) --- */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.8);
-            color: #1a1a1a;
-            border: none;
-            padding: 15px 18px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 20;
-            border-radius: 50%;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .slider-btn:hover {
-            background: #d4af37;
-            transform: translateY(-50%) scale(1.1);
-        }
-        .prev-btn { left: 25px; }
-        .next-btn { right: 25px; }
 
         /* Ending Wave Text */
         .wave-text-container {
@@ -164,7 +139,7 @@
             margin-bottom: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border-top: 4px solid #800020; /* Professional Rich Maroon */
+            border-top: 4px solid #800020;
         }
         .card h2 {
             color: #800020;
@@ -174,26 +149,24 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- SCROLLING GALLERY --- */
-        .scroll-wrapper {
-            overflow: hidden;
-            width: 100%;
-            background: #fdfbf7;
-            padding: 25px 0;
-            border-radius: 8px;
-            border: 1px solid #e6dcc3;
+        /* --- MANUAL SCROLLING GALLERY (గిఫ్ట్స్ ముందుకు, వెనక్కి జరుపుకోవడానికి బటన్స్) --- */
+        .gallery-wrapper {
             position: relative;
-        }
-
-        .scroll-track {
             display: flex;
-            gap: 30px;
-            width: max-content;
-            animation: scrollGallery 25s linear infinite;
+            align-items: center;
         }
 
-        .scroll-track:hover {
-            animation-play-state: paused;
+        .gallery-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            width: 100%;
+            padding: 15px 5px;
+            scrollbar-width: none; /* Firefox కోసం స్క్రోల్ బార్ హైడ్ చేయడం */
+        }
+        .gallery-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari కోసం స్క్రోల్ బార్ హైడ్ చేయడం */
         }
 
         .scroll-item {
@@ -206,7 +179,8 @@
             font-weight: 600;
             color: #333;
             cursor: pointer;
-            width: 220px;
+            min-width: 220px;
+            flex: 0 0 auto;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
         }
@@ -226,10 +200,27 @@
             background: #fff;
         }
 
-        @keyframes scrollGallery {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* గ్యాలరీ స్క్రోల్ బటన్స్ (Left & Right arrows) */
+        .gallery-btn {
+            background: #800020;
+            color: white;
+            border: 2px solid #d4af37;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.3s;
         }
+        .gallery-btn:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+            transform: scale(1.1);
+        }
+        .gallery-prev { left: -20px; }
+        .gallery-next { right: -20px; }
 
         /* --- MODAL POPUP (ఇమేజ్ క్లిక్ చేస్తే పెద్దదిగా చూపించడానికి) --- */
         .modal {
@@ -275,7 +266,7 @@
             text-align: center;
         }
 
-        /* --- PROFESSIONAL CONTACT & ADDRESS SECTION --- */
+        /* --- CONTACT & ADDRESS SECTION --- */
         .contact-box {
             background: #1a1a1a;
             color: white;
@@ -324,11 +315,13 @@
 </head>
 <body>
 
+    <!-- Professional Top Header -->
     <header>
         <h1>🎁 SMILEY GIFTS CENTER</h1>
         <a href="tel:09133196199" class="header-phone">📞 91331 96199</a>
     </header>
 
+    <!-- Original Banner & Video Flow -->
     <div class="banner-container">
         <div id="shopBanner" class="original-shop-banner"></div>
 
@@ -338,9 +331,6 @@
         </video>
 
         <div class="banner-overlay"></div>
-
-        <button class="slider-btn prev-btn" onclick="prevSlide()">&#10094;</button>
-        <button class="slider-btn next-btn" onclick="nextSlide()">&#10095;</button>
 
         <div id="waveText" class="wave-text-container">
             <span class="wave-letter">S</span>
@@ -380,17 +370,22 @@
     </div>
 
     <div class="container">
+        <!-- About Us -->
         <div class="card">
             <h2>Welcome to Smiley Gifts Center</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #555;">Located in <strong>Chirala (Polimera Rd, opposite HDFC Bank)</strong>. We bring your special moments to life with stunning photo frames, god idols, giant teddy bears, and luxury perfumes.</p>
         </div>
 
+        <!-- GIFTS GALLERY WITH MANUAL SCROLL BUTTONS & ZOOM -->
         <div class="card">
             <h2>Trending Gifts &amp; Perfumes Showcase</h2>
-            <p style="text-align: center; margin-bottom: 20px; font-weight: 500; color: #666;">Click on any item below to view in full screen:</p>
+            <p style="text-align: center; margin-bottom: 20px; font-weight: 500; color: #666;">Click on any item to view full screen, or use buttons to move left/right:</p>
             
-            <div class="scroll-wrapper">
-                <div class="scroll-track">
+            <div class="gallery-wrapper">
+                <!-- ముందుకు, వెనక్కి జరుపుకునే బటన్స్ -->
+                <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
+                
+                <div class="gallery-container" id="galleryContainer">
                     <div class="scroll-item" onclick="openModal('teddy.png', 'Giant Teddy Bear')">
                         <img src="teddy.png" alt="Teddy" onerror="this.src='https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400'">
                         Giant Teddy Bear
@@ -409,33 +404,15 @@
                     </div>
                     <div class="scroll-item" onclick="openModal('couple.png', 'Couple Love Showpiece')">
                         <img src="couple.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
-                        Love Showpiece
-                    </div>
-
-                    <div class="scroll-item" onclick="openModal('teddy.png', 'Giant Teddy Bear')">
-                        <img src="teddy.png" alt="Teddy" onerror="this.src='https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400'">
-                        Giant Teddy Bear
-                    </div>
-                    <div class="scroll-item" onclick="openModal('frame.png', 'Custom Golden Photo Frame')">
-                        <img src="frame.png" alt="Frame" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400'">
-                        Golden Photo Frame
-                    </div>
-                    <div class="scroll-item" onclick="openModal('perfume.png', 'Luxury Branded Perfume')">
-                        <img src="perfume.png" alt="Perfume" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400'">
-                        Luxury Perfume
-                    </div>
-                    <div class="scroll-item" onclick="openModal('godidol.png', 'Divine God Idol Frame')">
-                        <img src="godidol.png" alt="God Idol" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400'">
-                        God Idol Frame
-                    </div>
-                    <div class="scroll-item" onclick="openModal('couple.png', 'Couple Love Showpiece')">
-                        <img src="couple.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
-                        Love Showpiece
+                        Couple Love Showpiece
                     </div>
                 </div>
+
+                <button class="gallery-btn gallery-next" onclick="scrollGallery(1)">&#10095;</button>
             </div>
         </div>
 
+        <!-- Contact & Address Section -->
         <div class="contact-box">
             <h2>Visit Us / Direct Contact</h2>
             <div class="contact-details">
@@ -446,6 +423,7 @@
         </div>
     </div>
 
+    <!-- Modal Popup (Zoom Image) -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-btn">&times;</span>
         <img id="modalImg" src="" alt="Zoomed Image">
@@ -472,46 +450,29 @@
             document.getElementById('imageModal').style.display = "none";
         }
 
-        // Banner Slider Logic (Manual & Auto)
-        let currentMode = 1;
+        // Gallery Manual Scroll Function (ముందుకు, వెనక్కి జరపడానికి)
+        function scrollGallery(direction) {
+            const container = document.getElementById('galleryContainer');
+            container.scrollBy({
+                left: direction * 300,
+                behavior: 'smooth'
+            });
+        }
 
-        function showBannerState(state) {
-            const banner = document.getElementById('shopBanner');
-            const waveText = document.getElementById('waveText');
-            
-            if (state === 1) {
-                banner.classList.remove('hidden');
-                waveText.classList.remove('active');
-                currentMode = 1;
-            } else {
+        // Original Banner & Video Auto Flow
+        const banner = document.getElementById('shopBanner');
+        const waveText = document.getElementById('waveText');
+        let isBannerShown = true;
+
+        setInterval(() => {
+            if (isBannerShown) {
                 banner.classList.add('hidden');
                 waveText.classList.add('active');
-                currentMode = 2;
-            }
-        }
-
-        function nextSlide() {
-            if (currentMode === 1) {
-                showBannerState(2);
+                isBannerShown = false;
             } else {
-                showBannerState(1);
-            }
-        }
-
-        function prevSlide() {
-            if (currentMode === 2) {
-                showBannerState(1);
-            } else {
-                showBannerState(2);
-            }
-        }
-
-        // Auto slide interval
-        setInterval(() => {
-            if (currentMode === 1) {
-                showBannerState(2);
-            } else {
-                showBannerState(1);
+                banner.classList.remove('hidden');
+                waveText.classList.remove('active');
+                isBannerShown = true;
             }
         }, 12000);
     </script>
