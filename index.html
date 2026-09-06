@@ -26,27 +26,29 @@
             border-bottom: 6px solid #004d00;
         }
 
-        /* --- 1. ORIGINAL SHOP BANNER (First Screen) --- */
+        /* --- 1. FIRST BANNER (మొదట వచ్చి కొద్దిసేపటికి మాయమవుతుంది) --- */
         .original-shop-banner {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('banner.png'); /* మీరు పంపిన అసలైన బ్యానర్ ఫోటో */
+            background-image: url('banner.png');
             background-size: cover;
             background-position: center;
             z-index: 10;
-            animation: hideBannerPhoto 5s forwards; /* మొదటి 5 సెకండ్లు మాత్రమే కనిపిస్తుంది, తర్వాత మాయమవుతుంది */
+            /* ప్రతి 22 సెకండ్ల సైకిల్‌లో మొదటి 4 సెకండ్లు మాత్రమే కనిపిస్తుంది, మళ్లీ రిపీట్ అవుతుంది */
+            animation: bannerCycle 22s infinite;
         }
 
-        @keyframes hideBannerPhoto {
+        @keyframes bannerCycle {
             0% { opacity: 1; visibility: visible; }
-            90% { opacity: 1; visibility: visible; }
+            18% { opacity: 1; visibility: visible; } /* 4 సెకండ్లు ఉండి */
+            20% { opacity: 0; visibility: hidden; }  /* తర్వాత మాయమవుతుంది */
             100% { opacity: 0; visibility: hidden; }
         }
 
-        /* --- 2. BACKGROUND VIDEO (Plays after banner disappears) --- */
+        /* --- 2. BACKGROUND VIDEO (లూప్ అవుతూ ఉంటుంది) --- */
         .banner-video {
             position: absolute;
             top: 50%;
@@ -66,7 +68,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.15);
             z-index: 2;
         }
 
@@ -75,8 +77,6 @@
             top: 20px;
             right: 20px;
             z-index: 5;
-            opacity: 0;
-            animation: fadeInContent 1s 5s forwards;
         }
 
         .phone-badge {
@@ -90,51 +90,50 @@
             border: 1px solid rgba(255,255,255,0.6);
         }
 
-        /* --- 3. WAVE TYPING & END ZOOM HIGHLIGHT TEXT --- */
+        /* --- 3. ENDING TEXT (వీడియో ఎండ్ అయినప్పుడు మాత్రమే వేవ్‌లా టైప్ అయ్యి, పెద్దదై మాయమవుతుంది) --- */
         .wave-text-container {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 5;
             display: flex;
-            gap: 4px;
+            gap: 3px;
             opacity: 0;
-            /* 5వ సెకండ్ నుండి వీడియో రన్ అయ్యేటప్పుడు కనిపించడం మొదలవుతుంది, ఎండింగ్‌లో జూమ్ అవుతుంది */
-            animation: showTextSequence 20s infinite;
+            /* వీడియో అయిపోయే చివరి క్షణాల్లో మాత్రమే టెక్స్ట్ వస్తుంది */
+            animation: textEndHighlightCycle 22s infinite;
         }
 
         .wave-letter {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: #ffeb3b;
-            text-shadow: 3px 3px 0px #000, 0 0 15px rgba(255,0,0,0.7);
+            text-shadow: 2px 2px 0px #000, 0 0 12px rgba(255,0,0,0.8);
             display: inline-block;
-            /* లెటర్స్ అన్నీ వేవ్‌లాగా వచ్చే యానిమేషన్ */
-            animation: waveMotion 1.5s ease-in-out infinite alternate;
+            animation: waveMotion 0.6s ease-in-out infinite alternate;
         }
 
-        /* ప్రతి లెటర్‌కి వేవ్ టైమింగ్స్ మారుతాయి */
+        /* ప్రతి లెటర్‌కి వేవ్ టైమింగ్స్ */
         .wave-letter:nth-child(odd) { animation-delay: 0.1s; }
-        .wave-letter:nth-child(even) { animation-delay: 0.3s; }
-
-        @keyframes fadeInContent {
-            to { opacity: 1; }
-        }
-
-        /* టెక్స్ట్ సీక్వెన్స్ మరియు ఎండ్ జూమ్ ఎఫెక్ట్ */
-        @keyframes showTextSequence {
-            0% { opacity: 0; transform: translateX(-50%) scale(0.5); }
-            10% { opacity: 1; transform: translateX(-50%) scale(1); } /* వీడియో మధ్యలో నార్మల్ గా ఉంటుంది */
-            75% { opacity: 1; transform: translateX(-50%) scale(1); }
-            85% { opacity: 1; transform: translateX(-50%) scale(1.4) translateY(-20px); text-shadow: 0 0 30px #fff, 0 0 50px #ffeb3b; } /* వీడియో ఎండింగ్‌లో ఒక్కసారిగా పెద్దదిగా జూమ్ అయ్యి హైలైట్ అవుతుంది */
-            95% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
-            100% { opacity: 0; transform: translateX(-50%) scale(0.5); }
-        }
+        .wave-letter:nth-child(even) { animation-delay: 0.2s; }
 
         @keyframes waveMotion {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-12px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* ఎండింగ్ టెక్స్ట్ యానిమేషన్ సైకిల్ */
+        @keyframes textEndHighlightCycle {
+            0% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+            75% { opacity: 0; transform: translateX(-50%) scale(0.5); } /* వీడియో నడిచేంతవరకు కనిపించదు */
+            80% { opacity: 1; transform: translateX(-50%) scale(1); }    /* వీడియో ఎండింగ్‌లో టెక్స్ట్ ఎంట్రీ */
+            92% { 
+                opacity: 1; 
+                transform: translateX(-50%) scale(1.4) translateY(-15px); 
+                text-shadow: 0 0 25px #fff, 0 0 40px #ffeb3b; 
+            } /* ఒక్కసారిగా పెద్దదిగా జూమ్ అయ్యి హైలైట్ అవుతుంది */
+            98% { opacity: 0.2; transform: translateX(-50%) scale(0.8); }
+            100% { opacity: 0; transform: translateX(-50%) scale(0.5); }
         }
 
         /* --- WEBSITE BODY CONTENT --- */
@@ -245,10 +244,10 @@
 <body>
 
     <div class="banner-container">
-        <!-- 1. మీరు ఇచ్చిన ఒరిజినల్ బ్యానర్ (మొదట కనిపిస్తుంది) -->
+        <!-- 1. ఒరిజినల్ బ్యానర్ (మొదట వచ్చి మాయమవుతుంది) -->
         <div class="original-shop-banner"></div>
 
-        <!-- 2. బ్యాక్‌గ్రౌండ్ వీడియో (బ్యానర్ పోయిన తర్వాత రన్ అవుతుంది) -->
+        <!-- 2. బ్యాక్‌గ్రౌండ్ వీడియో (నిరంతరం రన్ అవుతుంది) -->
         <video autoplay muted loop playsinline class="banner-video">
             <source src="last_lo_humen_photofrmes_enka.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -260,7 +259,7 @@
             <a href="tel:09133196199" class="phone-badge">📞 91331 96199</a>
         </div>
 
-        <!-- 3. వేవ్ టైపింగ్ & ఎండ్ జూమ్ టెక్స్ట్ -->
+        <!-- 3. వీడియో ఎండింగ్‌లో వచ్చే టెక్స్ట్ (Smiley Gifts & Perfumes - Chirala) -->
         <div class="wave-text-container">
             <span class="wave-letter">S</span>
             <span class="wave-letter">m</span>
@@ -274,6 +273,27 @@
             <span class="wave-letter">f</span>
             <span class="wave-letter">t</span>
             <span class="wave-letter">s</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">&amp;</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">P</span>
+            <span class="wave-letter">e</span>
+            <span class="wave-letter">r</span>
+            <span class="wave-letter">f</span>
+            <span class="wave-letter">u</span>
+            <span class="wave-letter">m</span>
+            <span class="wave-letter">e</span>
+            <span class="wave-letter">s</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">-</span>
+            <span class="wave-letter">&nbsp;</span>
+            <span class="wave-letter">C</span>
+            <span class="wave-letter">h</span>
+            <span class="wave-letter">i</span>
+            <span class="wave-letter">r</span>
+            <span class="wave-letter">a</span>
+            <span class="wave-letter">l</span>
+            <span class="wave-letter">a</span>
         </div>
     </div>
 
