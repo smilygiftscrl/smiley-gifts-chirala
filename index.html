@@ -55,14 +55,14 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* 1. Original Banner (మీ ఫోల్డర్ లోని banner) */
+        /* 1. Original Shop Banner (.png) */
         .original-shop-banner {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('banner');
+            background-image: url('banner.png');
             background-size: cover;
             background-position: center;
             z-index: 10;
@@ -74,7 +74,7 @@
             pointer-events: none;
         }
 
-        /* 2. Background Video (మీ ఫోల్డర్ లోని వీడియో) */
+        /* 2. Background Video (.mp4) */
         .banner-video {
             position: absolute;
             top: 50%;
@@ -98,7 +98,7 @@
             z-index: 2;
         }
 
-        /* 3. Ending Wave Text Effect */
+        /* 3. Ending Wave & Zoom Text Effect */
         .wave-text-container {
             position: absolute;
             bottom: 40px;
@@ -337,7 +337,7 @@
 
         <!-- 2. Background Video -->
         <video id="bgVideo" muted playsinline class="banner-video">
-            <source src="last_lo_humen_photofrmes_enka" type="video/mp4">
+            <source src="last_lo_humen_photofrmes_enka.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
@@ -397,24 +397,24 @@
                 <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
                 
                 <div class="gallery-container" id="galleryContainer">
-                    <div class="scroll-item" onclick="openModal('teddyss', 'Giant Teddy Bear')">
-                        <img src="teddyss" alt="Teddy" onerror="this.src='https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss.png', 'Giant Teddy Bear')">
+                        <img src="teddyss.png" alt="Teddy" onerror="this.src='https://images.unsplash.com/photo-1559454403-b8fb8852101e?w=400'">
                         Giant Teddy Bear
                     </div>
-                    <div class="scroll-item" onclick="openModal('teddyss', 'Custom Golden Photo Frame')">
-                        <img src="teddyss" alt="Frame" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss.png', 'Custom Golden Photo Frame')">
+                        <img src="teddyss.png" alt="Frame" onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400'">
                         Golden Photo Frame
                     </div>
-                    <div class="scroll-item" onclick="openModal('teddyss', 'Luxury Branded Perfume')">
-                        <img src="teddyss" alt="Perfume" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss.png', 'Luxury Branded Perfume')">
+                        <img src="teddyss.png" alt="Perfume" onerror="this.src='https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400'">
                         Luxury Perfume
                     </div>
-                    <div class="scroll-item" onclick="openModal('teddyss', 'Divine God Idol Frame')">
-                        <img src="teddyss" alt="God Idol" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss.png', 'Divine God Idol Frame')">
+                        <img src="teddyss.png" alt="God Idol" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400'">
                         God Idol Frame
                     </div>
-                    <div class="scroll-item" onclick="openModal('teddyss', 'Couple Love Showpiece')">
-                        <img src="teddyss" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
+                    <div class="scroll-item" onclick="openModal('teddyss.png', 'Couple Love Showpiece')">
+                        <img src="teddyss.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
                         Couple Love Showpiece
                     </div>
                 </div>
