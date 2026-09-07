@@ -98,7 +98,7 @@
             z-index: 2;
         }
 
-        /* 3. Ending Wave & Zoom Text Effect (ఫ్రేమ్ సైజుకి తగ్గట్టు పెద్దగా మరియు ఎల్లో కలర్) */
+        /* 3. Ending Wave & Zoom Text Effect */
         .wave-text-container {
             position: absolute;
             top: 50%;
@@ -120,9 +120,9 @@
         }
 
         .wave-letter {
-            font-size: 3.8rem; /* ఫ్రేమ్ సైజుకి సరిపోయేలా పెద్ద సైజ్ */
+            font-size: 3.8rem;
             font-weight: 900;
-            color: #ffd700;    /* అచ్చమైన ఎల్లో/గోల్డ్ కలర్ */
+            color: #ffd700;
             text-shadow: 4px 4px 8px #000, 0 0 25px rgba(255, 215, 0, 0.9);
             display: inline-block;
             animation: waveMotion 0.6s ease-in-out infinite alternate;
@@ -213,7 +213,6 @@
             background: #fff;
         }
 
-        /* Gallery Left & Right Buttons */
         .gallery-btn {
             background: #800020;
             color: white;
@@ -310,23 +309,60 @@
             margin: 8px 0;
         }
         
+        /* Toggle Hours Button Style */
+        .toggle-hours-btn {
+            display: block;
+            width: 100%;
+            background: #222;
+            color: #d4af37;
+            border: 1px dashed #d4af37;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.05rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        .toggle-hours-btn:hover {
+            background: #d4af37;
+            color: #1a1a1a;
+            border-style: solid;
+        }
+
+        /* Opening Hours Dropdown Container */
+        #hoursDropdown {
+            display: none;
+            margin-top: 15px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Opening Hours Table Styling */
         .hours-table {
             width: 100%;
-            margin-top: 15px;
             border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            overflow: hidden;
         }
         .hours-table th {
             text-align: left;
             color: #d4af37;
             border-bottom: 1px solid #555;
-            padding-bottom: 8px;
-            font-size: 1.2rem;
+            padding: 8px 10px;
+            font-size: 1.1rem;
+            background: rgba(212, 175, 55, 0.1);
         }
         .hours-table td {
-            padding: 6px 0;
-            font-size: 1rem;
+            padding: 6px 10px;
+            font-size: 0.95rem;
             color: #ccc;
+            border-bottom: 1px solid #333;
         }
         .hours-table td:last-child {
             text-align: right;
@@ -384,7 +420,7 @@
 
         <div class="banner-overlay"></div>
 
-        <!-- 3. Ending Wave & Zoom Text (ఫ్రేమ్ సైజుకి తగిన పెద్ద సైజ్ & ఎల్లో కలర్) -->
+        <!-- 3. Ending Wave & Zoom Text -->
         <div id="waveText" class="wave-text-container">
             <span class="wave-letter">S</span>
             <span class="wave-letter">m</span>
@@ -468,26 +504,31 @@
             </div>
         </div>
 
-        <!-- Contact & Opening Hours Section -->
+        <!-- Contact & Opening Hours Section with Toggle Button -->
         <div class="contact-box">
             <h2>Visit Us / Store Timings</h2>
             <div class="contact-details">
                 <p><strong>Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, Andhra Pradesh - 523155</p>
                 <p style="margin-top: 10px;"><strong>Phone / WhatsApp:</strong> 91331 96199</p>
                 
-                <!-- Opening Hours Table Added -->
-                <table class="hours-table">
-                    <tr>
-                        <th colspan="2">Opening Hours</th>
-                    </tr>
-                    <tr><td>Monday</td><td>10 am – 9:46 pm</td></tr>
-                    <tr><td>Tuesday</td><td>10 am – 9:46 pm</td></tr>
-                    <tr><td>Wednesday</td><td>10 am – 9:46 pm</td></tr>
-                    <tr><td>Thursday</td><td>10 am – 9:46 pm</td></tr>
-                    <tr><td>Friday</td><td>10 am – 9:46 pm</td></tr>
-                    <tr><td>Saturday</td><td>10 am – 9:46 pm</td></tr>
-                    <tr><td>Sunday</td><td>10 am – 2:00 pm</td></tr>
-                </table>
+                <!-- Click Button to View Opening Hours -->
+                <button class="toggle-hours-btn" onclick="toggleHours()">🕒 View Opening Hours</button>
+                
+                <!-- Hidden Hours Table -->
+                <div id="hoursDropdown">
+                    <table class="hours-table">
+                        <tr>
+                            <th colspan="2">Store Timings</th>
+                        </tr>
+                        <tr><td>Monday</td><td>10 am – 9:46 pm</td></tr>
+                        <tr><td>Tuesday</td><td>10 am – 9:46 pm</td></tr>
+                        <tr><td>Wednesday</td><td>10 am – 9:46 pm</td></tr>
+                        <tr><td>Thursday</td><td>10 am – 9:46 pm</td></tr>
+                        <tr><td>Friday</td><td>10 am – 9:46 pm</td></tr>
+                        <tr><td>Saturday</td><td>10 am – 9:46 pm</td></tr>
+                        <tr><td>Sunday</td><td>10 am – 2:00 pm</td></tr>
+                    </table>
+                </div>
             </div>
             <a href="tel:09133196199" class="call-now-btn">📞 Call Now to Order</a>
         </div>
@@ -525,6 +566,16 @@
                 left: direction * 300,
                 behavior: 'smooth'
             });
+        }
+
+        // Toggle Opening Hours Function
+        function toggleHours() {
+            const hoursDiv = document.getElementById('hoursDropdown');
+            if (hoursDiv.style.display === 'none' || hoursDiv.style.display === '') {
+                hoursDiv.style.display = 'block';
+            } else {
+                hoursDiv.style.display = 'none';
+            }
         }
 
         const banner = document.getElementById('shopBanner');
