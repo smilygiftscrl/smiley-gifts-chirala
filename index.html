@@ -45,17 +45,23 @@
             background: #fff;
         }
 
-        /* --- BANNER & VIDEO SECTION (Desktop / Default) --- */
+        /* --- RESPONSIVE BANNER & VIDEO CONTAINER --- */
         .banner-container {
             width: 100%;
-            height: 500px;
+            /* లాప్‌టాప్ కోసం డిఫాల్ట్ ఆస్పెక్ట్ రేషియో లేదా హైట్ (ఇమేజ్ సైజుకి తగినట్లు మారుతుంది) */
+            aspect-ratio: 16 / 9; /* ఇది ఇమేజ్ కట్ అవ్వకుండా ఆటోమేటిక్‌గా హైట్‌ని అడ్జస్ట్ చేస్తుంది */
+            max-height: 550px;
+            min-height: 220px;
             position: relative;
             overflow: hidden;
             background: #000;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* 1. Original Shop Banner (.png) */
+        /* 1. Original Shop Banner (.png) - మొబైల్ & లాప్‌టాప్ రెండింటిలోనూ పర్ఫెక్ట్ ఫిట్ */
         .original-shop-banner {
             position: absolute;
             top: 0;
@@ -63,7 +69,8 @@
             width: 100%;
             height: 100%;
             background-image: url('banner.png');
-            background-size: cover;
+            background-size: 100% 100%; /* స్క్రీన్ వెడల్పు, ఎత్తుకి సరిగ్గా స్ట్రెచ్ అవకుండా ఫిట్ అవుతుంది */
+            background-repeat: no-repeat;
             background-position: center;
             z-index: 10;
             opacity: 1;
@@ -74,17 +81,15 @@
             pointer-events: none;
         }
 
-        /* 2. Background Video (.mp4) - Desktop */
+        /* 2. Background Video (.mp4) */
         .banner-video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* వీడియో స్క్రీన్‌కి సరిగ్గా నిండుగా వస్తుంది */
+            background: #000;
             z-index: 1;
         }
 
@@ -94,8 +99,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.15);
             z-index: 2;
+            pointer-events: none;
         }
 
         /* 3. Ending Wave & Zoom Text Effect */
@@ -120,7 +126,7 @@
         }
 
         .wave-letter {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 900;
             color: #ffd700;
             text-shadow: 4px 4px 8px #000, 0 0 25px rgba(255, 215, 0, 0.9);
@@ -132,7 +138,7 @@
 
         @keyframes waveMotion {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-12px); }
+            100% { transform: translateY(-10px); }
         }
 
         @keyframes finalZoomOut {
@@ -395,7 +401,7 @@
             border-top: 1px solid #333;
         }
 
-        /* --- MOBILE RESPONSIVE (మొబైల్ స్క్రీన్‌కి తగ్గట్టుగా - జూమ్ అవ్వదు) --- */
+        /* --- MOBILE RESPONSIVE --- */
         @media screen and (max-width: 768px) {
             header {
                 padding: 12px 15px;
@@ -411,21 +417,14 @@
                 font-size: 0.95rem;
             }
 
-            /* మొబైల్ కోసం బ్యానర్ హైట్ తగ్గించాం, కాబట్టి వీడియో జూమ్ అవ్వదు */
+            /* మొబైల్‌లో స్క్రీన్ సైజుకి తగ్గట్టు బ్యానర్ ఆటోమేటిక్‌గా అడ్జస్ట్ అవుతుంది */
             .banner-container {
-                height: 250px; 
-            }
-            .banner-video {
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                transform: none;
-                object-fit: fill;
+                aspect-ratio: 16 / 9; 
+                max-height: 260px;
             }
 
             .wave-letter {
-                font-size: 2.2rem;
+                font-size: 2.1rem;
             }
             .container {
                 margin: 20px auto;
