@@ -45,10 +45,10 @@
             background: #fff;
         }
 
-        /* --- BANNER & VIDEO SECTION --- */
+        /* --- BANNER & VIDEO SECTION (Desktop / Default) --- */
         .banner-container {
             width: 100%;
-            height: 520px;
+            height: 500px;
             position: relative;
             overflow: hidden;
             background: #000;
@@ -74,7 +74,7 @@
             pointer-events: none;
         }
 
-        /* 2. Background Video (.mp4) */
+        /* 2. Background Video (.mp4) - Desktop */
         .banner-video {
             position: absolute;
             top: 50%;
@@ -94,7 +94,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             z-index: 2;
         }
 
@@ -309,7 +309,6 @@
             margin: 8px 0;
         }
         
-        /* Toggle Hours Button Style */
         .toggle-hours-btn {
             display: block;
             width: 100%;
@@ -330,7 +329,6 @@
             border-style: solid;
         }
 
-        /* Opening Hours Dropdown Container */
         #hoursDropdown {
             display: none;
             margin-top: 15px;
@@ -342,7 +340,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Opening Hours Table Styling */
         .hours-table {
             width: 100%;
             border-collapse: collapse;
@@ -398,7 +395,7 @@
             border-top: 1px solid #333;
         }
 
-        /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
+        /* --- MOBILE RESPONSIVE (మొబైల్ స్క్రీన్‌కి తగ్గట్టుగా - జూమ్ అవ్వదు) --- */
         @media screen and (max-width: 768px) {
             header {
                 padding: 12px 15px;
@@ -413,9 +410,20 @@
                 padding: 6px 15px;
                 font-size: 0.95rem;
             }
+
+            /* మొబైల్ కోసం బ్యానర్ హైట్ తగ్గించాం, కాబట్టి వీడియో జూమ్ అవ్వదు */
             .banner-container {
-                height: 350px;
+                height: 250px; 
             }
+            .banner-video {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform: none;
+                object-fit: fill;
+            }
+
             .wave-letter {
                 font-size: 2.2rem;
             }
@@ -430,7 +438,7 @@
                 font-size: 1.4rem;
             }
             .gallery-btn {
-                display: none; /* మొబైల్ లో టచ్ స్క్రోల్ ఉంటుంది కాబట్టి బటన్స్ హైడ్ అవుతాయి */
+                display: none; 
             }
             .contact-box {
                 padding: 20px 15px;
@@ -456,7 +464,7 @@
         <div id="shopBanner" class="original-shop-banner"></div>
 
         <!-- 2. Background Video -->
-        <video id="bgVideo" muted playsinline class="banner-video">
+        <video id="bgVideo" autoplay muted playsinline webkit-playsinline class="banner-video">
             <source src="last_lo_humen_photofrmes_enka.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -566,10 +574,8 @@
                 <p><strong>Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, Andhra Pradesh - 523155</p>
                 <p style="margin-top: 10px;"><strong>Phone / WhatsApp:</strong> 91331 96199</p>
                 
-                <!-- Click Button to View Opening Hours -->
                 <button class="toggle-hours-btn" onclick="toggleHours()">🕒 View Opening Hours</button>
                 
-                <!-- Hidden Hours Table -->
                 <div id="hoursDropdown">
                     <table class="hours-table">
                         <tr>
@@ -623,7 +629,6 @@
             });
         }
 
-        // Toggle Opening Hours Function
         function toggleHours() {
             const hoursDiv = document.getElementById('hoursDropdown');
             if (hoursDiv.style.display === 'none' || hoursDiv.style.display === '') {
