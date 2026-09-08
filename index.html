@@ -397,6 +397,49 @@
             font-size: 1rem;
             border-top: 1px solid #333;
         }
+
+        /* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 12px 15px;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            header h1 {
+                font-size: 1.2rem;
+            }
+            .header-phone {
+                padding: 6px 15px;
+                font-size: 0.95rem;
+            }
+            .banner-container {
+                height: 350px;
+            }
+            .wave-letter {
+                font-size: 2.2rem;
+            }
+            .container {
+                margin: 20px auto;
+                padding: 0 10px;
+            }
+            .card {
+                padding: 20px 15px;
+            }
+            .card h2 {
+                font-size: 1.4rem;
+            }
+            .gallery-btn {
+                display: none; /* మొబైల్ లో టచ్ స్క్రోల్ ఉంటుంది కాబట్టి బటన్స్ హైడ్ అవుతాయి */
+            }
+            .contact-box {
+                padding: 20px 15px;
+            }
+            .contact-details {
+                font-size: 1rem;
+                padding: 15px 10px;
+            }
+        }
     </style>
 </head>
 <body>
