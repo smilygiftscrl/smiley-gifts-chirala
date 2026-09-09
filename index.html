@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Smiley Gifts Center - Chirala</title>
     <style>
         :root {
@@ -25,13 +25,15 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         /* --- VIBRANT HEADER --- */
         header {
             background: linear-gradient(135deg, var(--paytm-blue), #00153b);
             color: var(--white);
-            padding: 15px 40px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,14 +42,15 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            width: 100%;
         }
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--white);
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-weight: 800;
         }
         header h1 span {
@@ -56,16 +59,14 @@
         .header-phone {
             background: linear-gradient(135deg, var(--paytm-sky), #0088cc);
             color: var(--white);
-            padding: 10px 22px;
+            padding: 8px 16px;
             border-radius: 30px;
             font-weight: bold;
             text-decoration: none;
             transition: 0.3s;
+            font-size: 0.9rem;
             box-shadow: 0 4px 15px rgba(0,185,241,0.4);
-        }
-        .header-phone:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,185,241,0.6);
+            white-space: nowrap;
         }
 
         /* --- MAIN LAYOUT --- */
@@ -73,35 +74,37 @@
             display: flex;
             justify-content: space-between;
             max-width: 1650px;
-            margin: 30px auto;
-            padding: 0 20px;
-            gap: 25px;
+            margin: 20px auto;
+            padding: 0 10px;
+            gap: 20px;
+            width: 100%;
         }
 
-        /* --- LEFT SIDE PANEL WITH SPARK & REPEAT GIFT ANIMATION --- */
+        /* --- LEFT SIDE PANEL --- */
         .side-panel-left {
-            width: 340px;
+            width: 320px;
             background: var(--white);
             border-radius: 18px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 10px 30px rgba(0,37,108,0.12);
             border: 3px solid var(--paytm-sky);
             text-align: center;
             height: fit-content;
             position: sticky;
-            top: 90px;
+            top: 80px;
+            flex-shrink: 0;
         }
         .side-panel-left h3 {
             color: var(--paytm-blue);
-            font-size: 1.25rem;
-            margin-bottom: 12px;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
             font-weight: 800;
         }
         
         .photo-box-container {
             position: relative;
             width: 100%;
-            height: 480px;
+            height: 420px;
             border-radius: 12px;
             overflow: hidden;
             border: 2px solid var(--paytm-sky);
@@ -117,12 +120,12 @@
         /* --- GIFT BOX & SPARK ANIMATION OVERLAY --- */
         .gift-overlay-box {
             position: absolute;
-            bottom: 15px;
-            left: 10px;
-            right: 10px;
+            bottom: 10px;
+            left: 8px;
+            right: 8px;
             background: rgba(0, 37, 108, 0.94);
             border: 2px solid var(--accent-gold);
-            padding: 15px;
+            padding: 12px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
@@ -130,22 +133,22 @@
         }
 
         .gift-icon-anim {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             display: inline-block;
             animation: giftBounce 1.2s infinite ease-in-out;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         @keyframes giftBounce {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-6px) scale(1.1); }
+            50% { transform: translateY(-5px) scale(1.1); }
         }
 
         .dynamic-offer-text {
             color: var(--white);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            min-height: 45px;
+            min-height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -154,78 +157,49 @@
 
         .offer-phone-link {
             display: inline-block;
-            margin-top: 8px;
+            margin-top: 6px;
             background: var(--paytm-sky);
             color: var(--paytm-blue);
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-weight: 800;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             box-shadow: 0 4px 12px rgba(0,185,241,0.5);
-            transition: 0.3s;
-        }
-        .offer-phone-link:hover {
-            background: var(--accent-gold);
-            transform: scale(1.05);
         }
 
-        /* Keyframes for opening, staying, sparking & disappearing loop */
         @keyframes giftCycleAnimation {
-            0% { 
-                transform: scale(0.2); 
-                opacity: 0; 
-                filter: brightness(3); 
-            }
-            12% { 
-                transform: scale(1.05); 
-                opacity: 1; 
-                filter: brightness(1); 
-            }
-            18% { 
-                transform: scale(1); 
-                opacity: 1; 
-                filter: brightness(1); 
-            }
-            78% { 
-                transform: scale(1); 
-                opacity: 1; 
-                filter: brightness(1); 
-            }
-            88% { 
-                transform: scale(1.15); 
-                opacity: 0.7; 
-                filter: brightness(2.5) drop-shadow(0 0 15px #ffc107); 
-            }
-            100% { 
-                transform: scale(0.1); 
-                opacity: 0; 
-                filter: brightness(4); 
-            }
+            0% { transform: scale(0.2); opacity: 0; filter: brightness(3); }
+            12% { transform: scale(1.05); opacity: 1; filter: brightness(1); }
+            18% { transform: scale(1); opacity: 1; filter: brightness(1); }
+            78% { transform: scale(1); opacity: 1; filter: brightness(1); }
+            88% { transform: scale(1.15); opacity: 0.7; filter: brightness(2.5) drop-shadow(0 0 15px #ffc107); }
+            100% { transform: scale(0.1); opacity: 0; filter: brightness(4); }
         }
 
-        /* --- RIGHT LARGE SIDE PANEL (ONLY PHOTO) --- */
+        /* --- RIGHT SIDE PANEL --- */
         .side-panel-right {
-            width: 340px;
+            width: 320px;
             background: var(--white);
             border-radius: 18px;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 10px 30px rgba(0,37,108,0.12);
             border: 3px solid var(--paytm-sky);
             text-align: center;
             height: fit-content;
             position: sticky;
-            top: 90px;
+            top: 80px;
+            flex-shrink: 0;
         }
         .side-panel-right h3 {
             color: var(--paytm-blue);
-            font-size: 1.25rem;
-            margin-bottom: 12px;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
             font-weight: 800;
         }
         .side-panel-right img {
             width: 100%;
-            height: 480px;
+            height: 420px;
             object-fit: cover;
             border-radius: 12px;
             border: 2px solid var(--paytm-sky);
@@ -235,21 +209,20 @@
         /* --- CENTER CONTENT AREA --- */
         .center-content {
             flex: 1;
-            max-width: 900px;
+            min-width: 0;
         }
 
         /* --- BANNER & VIDEO CONTAINER --- */
         .banner-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            max-height: 460px;
-            min-height: 250px;
+            max-height: 420px;
             position: relative;
             overflow: hidden;
             background: #000;
             border-radius: 16px;
             box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .original-shop-banner {
@@ -282,7 +255,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 37, 108, 0.3);
+            background: rgba(0, 37, 108, 0.2);
             z-index: 2;
             pointer-events: none;
         }
@@ -290,8 +263,8 @@
         /* --- BODY CARDS --- */
         .card {
             background: var(--white);
-            padding: 35px;
-            margin-bottom: 30px;
+            padding: 20px;
+            margin-bottom: 20px;
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,37,108,0.08);
             border: 1px solid rgba(0,185,241,0.2);
@@ -299,8 +272,8 @@
         }
         .card h2 {
             color: var(--paytm-blue);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
             text-align: center;
             font-weight: 800;
         }
@@ -310,16 +283,16 @@
             position: relative;
             display: flex;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .gallery-container {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             overflow-x: auto;
             scroll-behavior: smooth;
             width: 100%;
-            padding: 20px 5px;
+            padding: 10px 5px;
             scrollbar-width: none;
         }
         .gallery-container::-webkit-scrollbar { display: none; }
@@ -327,32 +300,25 @@
         .scroll-item {
             background: var(--white);
             border: 2px solid #e1ecf7;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             border-radius: 14px;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--paytm-blue);
             cursor: pointer;
-            min-width: 210px;
+            min-width: 180px;
             flex: 0 0 auto;
             box-shadow: 0 6px 18px rgba(0,37,108,0.06);
             transition: all 0.3s ease;
         }
 
-        .scroll-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,185,241,0.25);
-            border-color: var(--paytm-sky);
-            background: linear-gradient(to bottom, #ffffff, #f0f9ff);
-        }
-
         .scroll-item img {
             width: 100%;
-            height: 150px;
+            height: 130px;
             object-fit: contain;
             border-radius: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             background: #f7fafd;
             padding: 5px;
         }
@@ -361,44 +327,42 @@
             background: var(--paytm-blue);
             color: white;
             border: 2px solid var(--paytm-sky);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            width: 45px; height: 45px;
+            width: 38px; height: 38px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
             position: absolute;
             z-index: 10;
             box-shadow: 0 6px 20px rgba(0,37,108,0.3);
-            transition: 0.3s;
         }
-        .gallery-btn:hover { background: var(--paytm-sky); color: var(--paytm-blue); transform: scale(1.1); }
-        .gallery-prev { left: -22px; }
-        .gallery-next { right: -22px; }
+        .gallery-prev { left: -15px; }
+        .gallery-next { right: -15px; }
 
         /* --- CONTACT & OPENING HOURS SECTION --- */
         .contact-box {
             background: linear-gradient(135deg, var(--paytm-blue), #00153b);
             color: white;
-            padding: 40px;
+            padding: 25px;
             border-radius: 16px;
             text-align: center;
             border: 3px solid var(--paytm-sky);
             box-shadow: 0 15px 40px rgba(0,37,108,0.3);
         }
-        .contact-box h2 { color: var(--paytm-sky); margin-bottom: 20px; }
+        .contact-box h2 { color: var(--paytm-sky); margin-bottom: 15px; font-size: 1.4rem; }
         .contact-details {
-            font-size: 1.1rem;
-            margin: 15px 0;
+            font-size: 0.95rem;
+            margin: 10px 0;
             color: #d1e3f8;
             text-align: left;
-            max-width: 580px;
+            max-width: 520px;
             margin-left: auto; margin-right: auto;
             background: rgba(0, 185, 241, 0.08);
-            padding: 25px;
+            padding: 18px;
             border-radius: 12px;
             border: 1px solid rgba(0,185,241,0.3);
         }
-        .contact-details p { margin: 10px 0; }
+        .contact-details p { margin: 6px 0; }
         
         .toggle-hours-btn {
             display: block;
@@ -406,17 +370,15 @@
             background: rgba(0, 37, 108, 0.8);
             color: var(--paytm-sky);
             border: 2px solid var(--paytm-sky);
-            padding: 12px;
+            padding: 10px;
             border-radius: 10px;
             font-weight: bold;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s;
+            margin-top: 15px;
         }
-        .toggle-hours-btn:hover { background: var(--paytm-sky); color: var(--paytm-blue); }
 
-        #hoursDropdown { display: none; margin-top: 15px; }
+        #hoursDropdown { display: none; margin-top: 12px; }
 
         .hours-table {
             width: 100%;
@@ -430,13 +392,13 @@
             text-align: left;
             color: var(--paytm-sky);
             border-bottom: 2px solid rgba(0,185,241,0.3);
-            padding: 10px 15px;
-            font-size: 1rem;
+            padding: 8px 12px;
+            font-size: 0.9rem;
             background: rgba(0, 185, 241, 0.12);
         }
         .hours-table td {
-            padding: 8px 15px;
-            font-size: 0.95rem;
+            padding: 7px 12px;
+            font-size: 0.85rem;
             color: #e2effe;
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
@@ -446,24 +408,22 @@
             display: inline-block;
             background: linear-gradient(135deg, var(--paytm-sky), #0088cc);
             color: var(--white);
-            padding: 15px 40px;
+            padding: 12px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1.2rem;
-            margin-top: 25px;
+            font-size: 1.05rem;
+            margin-top: 20px;
             box-shadow: 0 8px 25px rgba(0,185,241,0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .call-now-btn:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(0,185,241,0.8); }
 
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             background: #000c1e;
             color: #7a9ec2;
-            margin-top: 50px;
-            font-size: 0.95rem;
+            margin-top: 30px;
+            font-size: 0.85rem;
             border-top: 2px solid rgba(0,185,241,0.2);
         }
 
@@ -480,31 +440,72 @@
             backdrop-filter: blur(8px);
         }
         .modal img {
-            max-width: 85%; max-height: 75vh;
+            max-width: 90%; max-height: 75vh;
             border-radius: 14px; border: 4px solid var(--paytm-sky);
             background: white; object-fit: contain;
         }
         .close-btn {
-            position: absolute; top: 25px; right: 40px;
-            color: #fff; font-size: 3.5rem; font-weight: bold; cursor: pointer;
+            position: absolute; top: 20px; right: 30px;
+            color: #fff; font-size: 3rem; font-weight: bold; cursor: pointer;
         }
-        .close-btn:hover { color: var(--paytm-sky); }
         .modal-caption {
-            color: var(--paytm-sky); margin-top: 20px;
-            font-size: 1.5rem; font-weight: 800; text-align: center;
+            color: var(--paytm-sky); margin-top: 15px;
+            font-size: 1.2rem; font-weight: 800; text-align: center;
         }
 
-        /* --- MOBILE RESPONSIVE --- */
-        @media screen and (max-width: 1100px) {
-            .main-layout { flex-direction: column; align-items: center; }
-            .side-panel-left, .side-panel-right { width: 100%; max-width: 600px; position: static; }
-            .photo-box-container, .side-panel-right img { height: 350px; }
+        /* --- RESPONSIVE MEDIA QUERIES FOR MOBILE & LAPTOP/DESKTOP PERFECT FIT --- */
+        @media screen and (max-width: 1200px) {
+            .main-layout {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 15px;
+            }
+            .side-panel-left, .side-panel-right {
+                width: 100%;
+                max-width: 100%;
+                position: static;
+                height: auto;
+            }
+            .photo-box-container, .side-panel-right img {
+                height: 360px;
+            }
+            .center-content {
+                width: 100%;
+            }
         }
-        @media screen and (max-width: 768px) {
-            header { padding: 12px 20px; flex-direction: column; gap: 10px; text-align: center; }
-            header h1 { font-size: 1.3rem; }
-            .banner-container { max-height: 240px; }
-            .gallery-btn { display: none; }
+
+        @media screen and (max-width: 600px) {
+            header {
+                padding: 10px 15px;
+            }
+            header h1 {
+                font-size: 1.1rem;
+            }
+            .header-phone {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            .main-layout {
+                padding: 0 8px;
+                margin: 10px auto;
+                gap: 15px;
+            }
+            .card {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            .card h2 {
+                font-size: 1.2rem;
+            }
+            .photo-box-container, .side-panel-right img {
+                height: 280px;
+            }
+            .gallery-btn {
+                display: none; /* మొబైల్ లో టచ్ స్క్రోలింగ్ ఈజీగా ఉండటానికి బటన్స్ హైడ్ చేయబడ్డాయి */
+            }
+            .contact-box {
+                padding: 20px 15px;
+            }
         }
     </style>
 </head>
@@ -552,13 +553,13 @@
             <!-- Welcome Section -->
             <div class="card">
                 <h2>Welcome to Smiley Gifts &amp; Perfumes</h2>
-                <p style="text-align: center; font-size: 1.1rem; color: #4a5568;">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
+                <p style="text-align: center; font-size: 1rem; color: #4a5568;">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
             </div>
 
             <!-- GIFTS GALLERY -->
             <div class="card">
                 <h2>Trending Gifts &amp; Perfumes Showcase</h2>
-                <p style="text-align: center; margin-bottom: 20px; font-weight: 600; color: #55708a;">Click on any item to view full screen:</p>
+                <p style="text-align: center; margin-bottom: 15px; font-weight: 600; font-size: 0.9rem; color: #55708a;">Click on any item to view full screen:</p>
                 
                 <div class="gallery-wrapper">
                     <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
@@ -595,7 +596,7 @@
                 <h2>Visit Us / Store Timings</h2>
                 <div class="contact-details">
                     <p><strong>Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, Andhra Pradesh - 523155</p>
-                    <p style="margin-top: 10px;"><strong>Phone / WhatsApp:</strong> 91331 96199</p>
+                    <p style="margin-top: 8px;"><strong>Phone / WhatsApp:</strong> 91331 96199</p>
                     
                     <button class="toggle-hours-btn" onclick="toggleHours()">🕒 View Store Opening Hours</button>
                     
@@ -678,7 +679,7 @@
 
         function scrollGallery(direction) {
             const container = document.getElementById('galleryContainer');
-            container.scrollBy({ left: direction * 280, behavior: 'smooth' });
+            container.scrollBy({ left: direction * 220, behavior: 'smooth' });
         }
 
         function toggleHours() {
