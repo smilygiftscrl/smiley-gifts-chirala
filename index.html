@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200px, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Smiley Gifts Center - Chirala</title>
     <style>
         :root {
@@ -24,33 +24,33 @@
         body {
             background-color: var(--bg-light);
             color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: auto;
-            width: 1200px;
+            line-height: 1.5;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         /* --- VIBRANT HEADER --- */
         header {
             background: linear-gradient(135deg, var(--paytm-blue), #00153b);
             color: var(--white);
-            padding: 12px 20px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 4px solid var(--paytm-sky);
-            box-shadow: 0 4px 20px rgba(0,37,108,0.25);
+            box-shadow: 0 4px 15px rgba(0,37,108,0.25);
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 1200px;
+            width: 100%;
         }
         header h1 {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             color: var(--white);
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-weight: 800;
         }
         header h1 span {
@@ -59,61 +59,63 @@
         .header-phone {
             background: linear-gradient(135deg, var(--paytm-sky), #0088cc);
             color: var(--white);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 30px;
             font-weight: bold;
             text-decoration: none;
-            transition: 0.3s;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,185,241,0.4);
+            font-size: 0.85rem;
+            box-shadow: 0 4px 12px rgba(0,185,241,0.4);
             white-space: nowrap;
         }
 
-        /* --- MAIN LAYOUT --- */
+        /* --- MAIN LAYOUT (MOBILE RESPONSIVE STACK) --- */
         .main-layout {
             display: flex;
-            justify-content: space-between;
-            width: 1200px;
-            margin: 20px auto;
-            padding: 0 10px;
-            gap: 20px;
+            flex-direction: column;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+            gap: 15px;
         }
 
-        /* --- LEFT SIDE PANEL --- */
-        .side-panel-left {
-            width: 300px;
+        /* --- PANELS & CARDS GENERAL STYLE --- */
+        .side-panel-left, .side-panel-right, .card, .contact-box {
             background: var(--white);
-            border-radius: 18px;
+            border-radius: 14px;
             padding: 15px;
-            box-shadow: 0 10px 30px rgba(0,37,108,0.12);
-            border: 3px solid var(--paytm-sky);
-            text-align: center;
-            height: fit-content;
-            position: sticky;
-            top: 80px;
-            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(0,37,108,0.08);
+            border: 2px solid rgba(0,185,241,0.3);
+            width: 100%;
         }
-        .side-panel-left h3 {
+
+        .side-panel-left h3, .side-panel-right h3 {
             color: var(--paytm-blue);
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             margin-bottom: 10px;
             font-weight: 800;
+            text-align: center;
         }
         
         .photo-box-container {
             position: relative;
             width: 100%;
-            height: 420px;
-            border-radius: 12px;
+            height: 380px;
+            border-radius: 10px;
             overflow: hidden;
             border: 2px solid var(--paytm-sky);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .side-panel-left img {
+        .side-panel-left img, .side-panel-right img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .side-panel-right img {
+            height: 380px;
+            border: 2px solid var(--paytm-sky);
         }
 
         /* --- GIFT BOX & SPARK ANIMATION OVERLAY --- */
@@ -122,17 +124,17 @@
             bottom: 10px;
             left: 10px;
             right: 10px;
-            background: rgba(0, 37, 108, 0.92);
+            background: rgba(0, 37, 108, 0.94);
             border: 2px solid var(--accent-gold);
-            padding: 10px;
+            padding: 8px 10px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
             animation: giftCycleAnimation 7s infinite ease-in-out;
         }
 
         .gift-icon-anim {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             display: inline-block;
             animation: giftBounce 1.2s infinite ease-in-out;
             margin-bottom: 2px;
@@ -140,14 +142,14 @@
 
         @keyframes giftBounce {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-5px) scale(1.1); }
+            50% { transform: translateY(-4px) scale(1.1); }
         }
 
         .dynamic-offer-text {
             color: var(--white);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            min-height: 32px;
+            min-height: 26px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -157,15 +159,15 @@
 
         .offer-phone-link {
             display: inline-block;
-            margin-top: 5px;
+            margin-top: 4px;
             background: var(--paytm-sky);
             color: var(--paytm-blue);
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
             font-weight: 800;
             text-decoration: none;
-            font-size: 0.8rem;
-            box-shadow: 0 4px 12px rgba(0,185,241,0.5);
+            font-size: 0.78rem;
+            box-shadow: 0 3px 10px rgba(0,185,241,0.5);
         }
 
         @keyframes giftCycleAnimation {
@@ -177,52 +179,24 @@
             100% { transform: scale(0.1); opacity: 0; filter: brightness(4); }
         }
 
-        /* --- RIGHT SIDE PANEL --- */
-        .side-panel-right {
-            width: 300px;
-            background: var(--white);
-            border-radius: 18px;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0,37,108,0.12);
-            border: 3px solid var(--paytm-sky);
-            text-align: center;
-            height: fit-content;
-            position: sticky;
-            top: 80px;
-            flex-shrink: 0;
-        }
-        .side-panel-right h3 {
-            color: var(--paytm-blue);
-            font-size: 1.15rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-        .side-panel-right img {
-            width: 100%;
-            height: 420px;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 2px solid var(--paytm-sky);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
         /* --- CENTER CONTENT AREA --- */
         .center-content {
-            width: 540px;
-            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
         }
 
         /* --- BANNER & VIDEO CONTAINER --- */
         .banner-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            max-height: 310px;
+            max-height: 260px;
             position: relative;
             overflow: hidden;
             background: #000;
-            border-radius: 16px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
         .original-shop-banner {
@@ -261,21 +235,18 @@
         }
 
         /* --- BODY CARDS --- */
-        .card {
-            background: var(--white);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,37,108,0.08);
-            border: 1px solid rgba(0,185,241,0.2);
-            border-top: 5px solid var(--paytm-sky);
-        }
         .card h2 {
             color: var(--paytm-blue);
-            margin-bottom: 12px;
-            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
             text-align: center;
             font-weight: 800;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #4a5568;
+            text-align: center;
         }
 
         /* --- GIFTS GALLERY --- */
@@ -283,16 +254,16 @@
             position: relative;
             display: flex;
             align-items: center;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .gallery-container {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             overflow-x: auto;
             scroll-behavior: smooth;
             width: 100%;
-            padding: 10px 5px;
+            padding: 5px;
             scrollbar-width: none;
         }
         .gallery-container::-webkit-scrollbar { display: none; }
@@ -300,91 +271,76 @@
         .scroll-item {
             background: var(--white);
             border: 2px solid #e1ecf7;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
-            border-radius: 14px;
-            font-size: 0.95rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--paytm-blue);
             cursor: pointer;
-            min-width: 150px;
+            min-width: 140px;
             flex: 0 0 auto;
-            box-shadow: 0 6px 18px rgba(0,37,108,0.06);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,37,108,0.06);
         }
 
         .scroll-item img {
             width: 100%;
-            height: 110px;
+            height: 100px;
             object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 8px;
+            border-radius: 8px;
+            margin-bottom: 6px;
             background: #f7fafd;
-            padding: 5px;
+            padding: 4px;
         }
 
         .gallery-btn {
-            background: var(--paytm-blue);
-            color: white;
-            border: 2px solid var(--paytm-sky);
-            font-size: 1.1rem;
-            cursor: pointer;
-            width: 38px; height: 38px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%;
-            position: absolute;
-            z-index: 10;
-            box-shadow: 0 6px 20px rgba(0,37,108,0.3);
+            display: none; /* మొబైల్‌లో బటన్లు అవసరం లేదు, స్వైప్ చేసుకోవచ్చు */
         }
-        .gallery-prev { left: -15px; }
-        .gallery-next { right: -15px; }
 
         /* --- CONTACT & OPENING HOURS SECTION --- */
         .contact-box {
             background: linear-gradient(135deg, var(--paytm-blue), #00153b);
             color: white;
-            padding: 25px;
-            border-radius: 16px;
             text-align: center;
             border: 3px solid var(--paytm-sky);
-            box-shadow: 0 15px 40px rgba(0,37,108,0.3);
+            box-shadow: 0 10px 30px rgba(0,37,108,0.25);
+            padding: 20px 15px;
         }
-        .contact-box h2 { color: var(--paytm-sky); margin-bottom: 15px; font-size: 1.3rem; }
+        .contact-box h2 { color: var(--paytm-sky); margin-bottom: 12px; font-size: 1.2rem; }
+        
         .contact-details {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             margin: 10px 0;
             color: #d1e3f8;
             text-align: left;
-            max-width: 480px;
-            margin-left: auto; margin-right: auto;
             background: rgba(0, 185, 241, 0.08);
-            padding: 18px;
-            border-radius: 12px;
+            padding: 14px;
+            border-radius: 10px;
             border: 1px solid rgba(0,185,241,0.3);
         }
-        .contact-details p { margin: 6px 0; }
+        .contact-details p { margin: 5px 0; color: #d1e3f8; text-align: left; }
         
         .toggle-hours-btn {
             display: block;
             width: 100%;
-            background: rgba(0, 37, 108, 0.8);
+            background: rgba(0, 37, 108, 0.9);
             color: var(--paytm-sky);
             border: 2px solid var(--paytm-sky);
-            padding: 10px;
-            border-radius: 10px;
+            padding: 8px;
+            border-radius: 8px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
-        #hoursDropdown { display: none; margin-top: 12px; }
+        #hoursDropdown { display: none; margin-top: 10px; }
 
         .hours-table {
             width: 100%;
             border-collapse: collapse;
             background: rgba(0, 20, 50, 0.6);
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid rgba(0,185,241,0.2);
         }
@@ -392,13 +348,13 @@
             text-align: left;
             color: var(--paytm-sky);
             border-bottom: 2px solid rgba(0,185,241,0.3);
-            padding: 8px 12px;
-            font-size: 0.9rem;
+            padding: 6px 10px;
+            font-size: 0.82rem;
             background: rgba(0, 185, 241, 0.12);
         }
         .hours-table td {
-            padding: 7px 12px;
-            font-size: 0.85rem;
+            padding: 6px 10px;
+            font-size: 0.8rem;
             color: #e2effe;
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
@@ -408,24 +364,23 @@
             display: inline-block;
             background: linear-gradient(135deg, var(--paytm-sky), #0088cc);
             color: var(--white);
-            padding: 12px 30px;
-            border-radius: 50px;
+            padding: 10px 25px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 1.05rem;
-            margin-top: 20px;
-            box-shadow: 0 8px 25px rgba(0,185,241,0.5);
+            font-size: 0.95rem;
+            margin-top: 15px;
+            box-shadow: 0 6px 20px rgba(0,185,241,0.4);
         }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             background: #000c1e;
             color: #7a9ec2;
-            margin-top: 30px;
-            font-size: 0.85rem;
+            margin-top: 20px;
+            font-size: 0.8rem;
             border-top: 2px solid rgba(0,185,241,0.2);
-            width: 1200px;
         }
 
         /* --- MODAL ZOOM POPUP --- */
@@ -434,24 +389,54 @@
             position: fixed;
             z-index: 9999;
             left: 0; top: 0;
-            width: 1200px; height: 100vh;
+            width: 100%; height: 100%;
             background-color: rgba(0, 20, 50, 0.9);
             justify-content: center; align-items: center;
             flex-direction: column;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(6px);
         }
         .modal img {
-            max-width: 800px; max-height: 75vh;
-            border-radius: 14px; border: 4px solid var(--paytm-sky);
+            max-width: 90%; max-height: 70vh;
+            border-radius: 12px; border: 3px solid var(--paytm-sky);
             background: white; object-fit: contain;
         }
         .close-btn {
-            position: absolute; top: 20px; right: 50px;
-            color: #fff; font-size: 3rem; font-weight: bold; cursor: pointer;
+            position: absolute; top: 15px; right: 20px;
+            color: #fff; font-size: 2.5rem; font-weight: bold; cursor: pointer;
         }
         .modal-caption {
-            color: var(--paytm-sky); margin-top: 15px;
-            font-size: 1.2rem; font-weight: 800; text-align: center;
+            color: var(--paytm-sky); margin-top: 12px;
+            font-size: 1.05rem; font-weight: 800; text-align: center;
+        }
+
+        /* --- DESKTOP SCREEN ADJUSTMENT (లాప్‌టాప్‌లో పాతలాగే పక్కపక్కనే రావడానికి) --- */
+        @media screen and (min-width: 1024px) {
+            .main-layout {
+                flex-direction: row;
+                justify-content: space-between;
+                max-width: 1400px;
+                padding: 0 20px;
+                margin: 20px auto;
+            }
+            .side-panel-left, .side-panel-right {
+                width: 300px;
+                position: sticky;
+                top: 80px;
+                height: fit-content;
+            }
+            .center-content {
+                flex: 1;
+                max-width: 720px;
+            }
+            .photo-box-container, .side-panel-right img {
+                height: 420px;
+            }
+            .banner-container {
+                max-height: 400px;
+            }
+            .gallery-btn {
+                display: flex;
+            }
         }
     </style>
 </head>
@@ -496,13 +481,13 @@
 
             <div class="card">
                 <h2>Welcome to Smiley Gifts &amp; Perfumes</h2>
-                <p style="text-align: center; font-size: 0.95rem; color: #4a5568;">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
+                <p>Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
             </div>
 
             <!-- GIFTS GALLERY -->
             <div class="card">
                 <h2>Trending Gifts &amp; Perfumes Showcase</h2>
-                <p style="text-align: center; margin-bottom: 12px; font-weight: 600; font-size: 0.85rem; color: #55708a;">Click on any item to view full screen:</p>
+                <p style="margin-bottom: 10px; font-weight: 600; font-size: 0.82rem; color: #55708a;">Click on any item to view full screen:</p>
                 
                 <div class="gallery-wrapper">
                     <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
@@ -538,8 +523,8 @@
             <div class="contact-box">
                 <h2>Visit Us / Store Timings</h2>
                 <div class="contact-details">
-                    <p><strong>Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, Andhra Pradesh - 523155</p>
-                    <p style="margin-top: 8px;"><strong>Phone / WhatsApp:</strong> 91331 96199</p>
+                    <p><strong>Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, AP - 523155</p>
+                    <p style="margin-top: 6px;"><strong>Phone / WhatsApp:</strong> 91331 96199</p>
                     
                     <button class="toggle-hours-btn" onclick="toggleHours()">🕒 View Store Opening Hours</button>
                     
