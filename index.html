@@ -68,7 +68,7 @@
             white-space: nowrap;
         }
 
-        /* --- MAIN LAYOUT (MOBILE RESPONSIVE STACK) --- */
+        /* --- MAIN LAYOUT --- */
         .main-layout {
             display: flex;
             flex-direction: column;
@@ -78,7 +78,6 @@
             gap: 15px;
         }
 
-        /* --- PANELS & CARDS GENERAL STYLE --- */
         .side-panel-left, .side-panel-right, .card, .contact-box {
             background: var(--white);
             border-radius: 14px;
@@ -118,7 +117,7 @@
             border: 2px solid var(--paytm-sky);
         }
 
-        /* --- GIFT BOX & SPARK ANIMATION OVERLAY --- */
+        /* --- GIFT BOX OVERLAY --- */
         .gift-overlay-box {
             position: absolute;
             bottom: 10px;
@@ -179,7 +178,6 @@
             100% { transform: scale(0.1); opacity: 0; filter: brightness(4); }
         }
 
-        /* --- CENTER CONTENT AREA --- */
         .center-content {
             display: flex;
             flex-direction: column;
@@ -187,7 +185,6 @@
             width: 100%;
         }
 
-        /* --- BANNER & VIDEO CONTAINER --- */
         .banner-container {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -234,7 +231,6 @@
             pointer-events: none;
         }
 
-        /* --- BODY CARDS --- */
         .card h2 {
             color: var(--paytm-blue);
             margin-bottom: 10px;
@@ -249,53 +245,79 @@
             text-align: center;
         }
 
-        /* --- GIFTS GALLERY --- */
+        /* --- LARGER GIFTS GALLERY CARDS & WORKING BUTTONS --- */
         .gallery-wrapper {
             position: relative;
             display: flex;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 15px;
+            padding: 0 25px; /* బటన్ల కోసం సైడ్ స్పేస్ */
         }
 
         .gallery-container {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             overflow-x: auto;
             scroll-behavior: smooth;
             width: 100%;
-            padding: 5px;
+            padding: 10px 5px;
             scrollbar-width: none;
         }
         .gallery-container::-webkit-scrollbar { display: none; }
 
         .scroll-item {
             background: var(--white);
-            border: 2px solid #e1ecf7;
-            padding: 10px;
+            border: 2px solid #bce6fb;
+            padding: 15px;
             text-align: center;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 800;
             color: var(--paytm-blue);
             cursor: pointer;
-            min-width: 140px;
+            min-width: 210px; /* ఇమేజెస్ పెద్దగా కనిపించడానికి సైజ్ పెంచాము */
             flex: 0 0 auto;
-            box-shadow: 0 4px 12px rgba(0,37,108,0.06);
+            box-shadow: 0 6px 20px rgba(0,37,108,0.1);
+            transition: transform 0.2s;
+        }
+
+        .scroll-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--paytm-sky);
         }
 
         .scroll-item img {
             width: 100%;
-            height: 100px;
+            height: 160px; /* ఇమేజ్ హైట్ పెంచాము જેથી క్లియర్‌గా పెద్దగా కనిపిస్తుంది */
             object-fit: contain;
-            border-radius: 8px;
-            margin-bottom: 6px;
+            border-radius: 12px;
+            margin-bottom: 10px;
             background: #f7fafd;
-            padding: 4px;
+            padding: 8px;
         }
 
         .gallery-btn {
-            display: none; /* మొబైల్‌లో బటన్లు అవసరం లేదు, స్వైప్ చేసుకోవచ్చు */
+            background: var(--paytm-blue);
+            color: white;
+            border: 2px solid var(--paytm-sky);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 42px; 
+            height: 42px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 20;
+            box-shadow: 0 6px 20px rgba(0,37,108,0.4);
+            transition: background 0.2s;
         }
+        .gallery-btn:active {
+            background: var(--paytm-sky);
+        }
+        .gallery-prev { left: -5px; }
+        .gallery-next { right: -5px; }
 
         /* --- CONTACT & OPENING HOURS SECTION --- */
         .contact-box {
@@ -409,7 +431,7 @@
             font-size: 1.05rem; font-weight: 800; text-align: center;
         }
 
-        /* --- DESKTOP SCREEN ADJUSTMENT (లాప్‌టాప్‌లో పాతలాగే పక్కపక్కనే రావడానికి) --- */
+        /* --- DESKTOP SCREEN ADJUSTMENT --- */
         @media screen and (min-width: 1024px) {
             .main-layout {
                 flex-direction: row;
@@ -433,9 +455,6 @@
             }
             .banner-container {
                 max-height: 400px;
-            }
-            .gallery-btn {
-                display: flex;
             }
         }
     </style>
@@ -484,10 +503,10 @@
                 <p>Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
             </div>
 
-            <!-- GIFTS GALLERY -->
+            <!-- GIFTS GALLERY (Larger Size & Working Buttons) -->
             <div class="card">
                 <h2>Trending Gifts &amp; Perfumes Showcase</h2>
-                <p style="margin-bottom: 10px; font-weight: 600; font-size: 0.82rem; color: #55708a;">Click on any item to view full screen:</p>
+                <p style="margin-bottom: 10px; font-weight: 600; font-size: 0.85rem; color: #55708a;">Click on any item to view full screen:</p>
                 
                 <div class="gallery-wrapper">
                     <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
@@ -605,7 +624,7 @@
 
         function scrollGallery(direction) {
             const container = document.getElementById('galleryContainer');
-            container.scrollBy({ left: direction * 180, behavior: 'smooth' });
+            container.scrollBy({ left: direction * 230, behavior: 'smooth' });
         }
 
         function toggleHours() {
