@@ -117,54 +117,55 @@
             object-fit: cover;
         }
 
-        /* --- GIFT BOX & SPARK ANIMATION OVERLAY --- */
+        /* --- GIFT BOX & SPARK ANIMATION OVERLAY (మొబైల్ కోసం మరింత కాంపాక్ట్ సైజ్) --- */
         .gift-overlay-box {
             position: absolute;
-            bottom: 10px;
+            bottom: 8px;
             left: 8px;
             right: 8px;
             background: rgba(0, 37, 108, 0.94);
             border: 2px solid var(--accent-gold);
-            padding: 12px;
-            border-radius: 12px;
+            padding: 8px 10px;
+            border-radius: 10px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
             animation: giftCycleAnimation 7s infinite ease-in-out;
         }
 
         .gift-icon-anim {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             display: inline-block;
             animation: giftBounce 1.2s infinite ease-in-out;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         @keyframes giftBounce {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-5px) scale(1.1); }
+            50% { transform: translateY(-4px) scale(1.1); }
         }
 
         .dynamic-offer-text {
             color: var(--white);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            min-height: 38px;
+            min-height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            line-height: 1.2;
         }
 
         .offer-phone-link {
             display: inline-block;
-            margin-top: 6px;
+            margin-top: 4px;
             background: var(--paytm-sky);
             color: var(--paytm-blue);
-            padding: 5px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
             font-weight: 800;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             box-shadow: 0 4px 12px rgba(0,185,241,0.5);
         }
 
@@ -453,7 +454,7 @@
             font-size: 1.2rem; font-weight: 800; text-align: center;
         }
 
-        /* --- RESPONSIVE MEDIA QUERIES FOR MOBILE & LAPTOP/DESKTOP PERFECT FIT --- */
+        /* --- RESPONSIVE MEDIA QUERIES --- */
         @media screen and (max-width: 1200px) {
             .main-layout {
                 flex-direction: column;
@@ -497,11 +498,14 @@
             .card h2 {
                 font-size: 1.2rem;
             }
-            .photo-box-container, .side-panel-right img {
+            .photo-box-container {
+                height: 320px;
+            }
+            .side-panel-right img {
                 height: 280px;
             }
             .gallery-btn {
-                display: none; /* మొబైల్ లో టచ్ స్క్రోలింగ్ ఈజీగా ఉండటానికి బటన్స్ హైడ్ చేయబడ్డాయి */
+                display: none;
             }
             .contact-box {
                 padding: 20px 15px;
@@ -526,7 +530,7 @@
             <div class="photo-box-container">
                 <img src="my_photo1.png" alt="My Photo 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
                 
-                <!-- Gift Box & Rotating Offer Text Overlay with Spark Exit -->
+                <!-- Gift Box & Rotating Offer Text Overlay -->
                 <div class="gift-overlay-box" id="giftOverlayBox">
                     <div class="gift-icon-anim">🎁</div>
                     <div id="dynamicOfferText" class="dynamic-offer-text">
@@ -613,7 +617,7 @@
 
         </div>
 
-        <!-- RIGHT SIDE PANEL (ONLY PHOTO) -->
+        <!-- RIGHT SIDE PANEL -->
         <div class="side-panel-right">
             <h3>🌟 Smiley Gift Shop</h3>
             <img src="my_photo2.png" alt="My Photo 2" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600'">
@@ -633,7 +637,6 @@
     </footer>
 
     <script>
-        /* --- DYNAMIC OFFER TEXT ROTATOR (English & Telugu inside the box) --- */
         const offers = [
             "Today Special Offers Available!",
             "ప్రత్యేకమైన ఆఫర్స్ అందుబాటులో ఉన్నాయి!"
@@ -653,12 +656,11 @@
         }
         setInterval(rotateOffers, 3500);
 
-        /* --- SMOOTH RE-TRIGGER FOR SPARK & DISAPPEAR LOOP --- */
         setInterval(() => {
             const box = document.getElementById('giftOverlayBox');
             if(box) {
                 box.style.animation = 'none';
-                box.offsetHeight; // trigger reflow
+                box.offsetHeight;
                 box.style.animation = 'giftCycleAnimation 7s infinite ease-in-out';
             }
         }, 7000);
