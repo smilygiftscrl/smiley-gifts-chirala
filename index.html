@@ -68,7 +68,7 @@
             box-shadow: 0 6px 20px rgba(0,185,241,0.6);
         }
 
-        /* --- MAIN LAYOUT FOR LARGE SIDE PANELS & CENTER CONTENT --- */
+        /* --- MAIN LAYOUT --- */
         .main-layout {
             display: flex;
             justify-content: space-between;
@@ -78,12 +78,12 @@
             gap: 25px;
         }
 
-        /* --- LARGE SIDE PANELS (పెద్ద సైజ్ ఇమేజ్ ప్యానెల్స్) --- */
-        .side-panel {
-            width: 320px;
+        /* --- LEFT SIDE PANEL WITH GIFT BOX REVEAL ANIMATION --- */
+        .side-panel-left {
+            width: 340px;
             background: var(--white);
             border-radius: 18px;
-            padding: 22px;
+            padding: 20px;
             box-shadow: 0 10px 30px rgba(0,37,108,0.12);
             border: 3px solid var(--paytm-sky);
             text-align: center;
@@ -91,31 +91,123 @@
             position: sticky;
             top: 90px;
         }
-        .side-panel h3 {
+        .side-panel-left h3 {
             color: var(--paytm-blue);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
             font-weight: 800;
         }
-        .side-panel img {
+        
+        .photo-box-container {
+            position: relative;
             width: 100%;
-            height: 480px; /* పెద్ద సైజు ఇమేజ్ కొరకు హైట్ పెంచబడింది */
+            height: 480px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--paytm-sky);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .side-panel-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- GIFT BOX & POPUP TEXT OVERLAY ON LEFT PHOTO --- */
+        .gift-overlay-box {
+            position: absolute;
+            bottom: 15px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0, 37, 108, 0.92);
+            border: 2px solid var(--accent-gold);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            animation: popupSpring 0.6s ease-out;
+        }
+
+        .gift-icon-anim {
+            font-size: 2.2rem;
+            display: inline-block;
+            animation: giftBounce 1.5s infinite ease-in-out;
+            margin-bottom: 5px;
+        }
+
+        @keyframes giftBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.1); }
+        }
+
+        .dynamic-offer-text {
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 700;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .offer-phone-link {
+            display: inline-block;
+            margin-top: 8px;
+            background: var(--paytm-sky);
+            color: var(--paytm-blue);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,185,241,0.5);
+            transition: 0.3s;
+        }
+        .offer-phone-link:hover {
+            background: var(--accent-gold);
+            transform: scale(1.05);
+        }
+
+        @keyframes popupSpring {
+            0% { transform: scale(0.3); opacity: 0; }
+            70% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- RIGHT LARGE SIDE PANEL (ONLY PHOTO) --- */
+        .side-panel-right {
+            width: 340px;
+            background: var(--white);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,37,108,0.12);
+            border: 3px solid var(--paytm-sky);
+            text-align: center;
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+        .side-panel-right h3 {
+            color: var(--paytm-blue);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+        .side-panel-right img {
+            width: 100%;
+            height: 480px;
             object-fit: cover;
             border-radius: 12px;
             border: 2px solid var(--paytm-sky);
-            margin-bottom: 15px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-        .side-panel p {
-            font-size: 1rem;
-            color: var(--paytm-blue);
-            font-weight: 700;
         }
 
         /* --- CENTER CONTENT AREA --- */
         .center-content {
             flex: 1;
-            max-width: 950px;
+            max-width: 900px;
         }
 
         /* --- BANNER & VIDEO CONTAINER --- */
@@ -153,10 +245,8 @@
 
         .banner-video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             object-fit: cover;
             background: #000;
             z-index: 1;
@@ -164,70 +254,11 @@
 
         .banner-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 37, 108, 0.3);
             z-index: 2;
             pointer-events: none;
-        }
-
-        /* --- ROTATING & SPRINGING GIFT BOX REVEAL BANNER --- */
-        .gift-reveal-container {
-            background: linear-gradient(135deg, #00256c, #00b9f1);
-            padding: 30px;
-            border-radius: 18px;
-            text-align: center;
-            margin-bottom: 30px;
-            border: 4px solid var(--accent-gold);
-            box-shadow: 0 15px 40px rgba(0,185,241,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gift-box-icon {
-            font-size: 4rem;
-            display: inline-block;
-            animation: giftRotateSpring 3s infinite ease-in-out;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-
-        @keyframes giftRotateSpring {
-            0% { transform: rotate(0deg) scale(1); }
-            20% { transform: rotate(-15deg) scale(1.1); }
-            40% { transform: rotate(15deg) scale(1.1); }
-            60% { transform: rotate(0deg) scale(1); }
-            80% { transform: translateY(-10px) scale(1.15); }
-            100% { transform: translateY(0) scale(1); }
-        }
-
-        .offer-message-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 12px;
-            border: 3px dashed #ff4b2b;
-            animation: boxRevealPulse 2s infinite;
-        }
-
-        .offer-message-box h2 {
-            color: #d32f2f;
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            font-weight: 900;
-        }
-
-        .offer-message-box p {
-            color: var(--paytm-blue);
-            font-size: 1.25rem;
-            font-weight: 800;
-        }
-
-        @keyframes boxRevealPulse {
-            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 193, 7, 0.5); }
-            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(255, 75, 43, 0.8); }
-            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 193, 7, 0.5); }
         }
 
         /* --- BODY CARDS --- */
@@ -444,8 +475,8 @@
         /* --- MOBILE RESPONSIVE --- */
         @media screen and (max-width: 1100px) {
             .main-layout { flex-direction: column; align-items: center; }
-            .side-panel { width: 100%; max-width: 600px; position: static; }
-            .side-panel img { height: 350px; }
+            .side-panel-left, .side-panel-right { width: 100%; max-width: 600px; position: static; }
+            .photo-box-container, .side-panel-right img { height: 350px; }
         }
         @media screen and (max-width: 768px) {
             header { padding: 12px 20px; flex-direction: column; gap: 10px; text-align: center; }
@@ -463,14 +494,24 @@
         <a href="tel:09133196199" class="header-phone">📞 91331 96199</a>
     </header>
 
-    <!-- Main Layout with Large Side Panels & Center Content -->
+    <!-- Main Layout -->
     <div class="main-layout">
         
-        <!-- LEFT LARGE SIDE PANEL -->
-        <div class="side-panel">
+        <!-- LEFT SIDE PANEL WITH DYNAMIC GIFT REVEAL ON PHOTO -->
+        <div class="side-panel-left">
             <h3>🎁 Creator Special</h3>
-            <img src="my_photo1.png" alt="My Photo 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
-            <p>🎁 Smiley Gift Shop Creator</p>
+            <div class="photo-box-container">
+                <img src="my_photo1.png" alt="My Photo 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
+                
+                <!-- Gift Box & Rotating Offer Text Overlay -->
+                <div class="gift-overlay-box">
+                    <div class="gift-icon-anim">🎁</div>
+                    <div id="dynamicOfferText" class="dynamic-offer-text">
+                        Today Special Offers Available!
+                    </div>
+                    <a href="tel:09133196199" class="offer-phone-link">📞 91331 96199</a>
+                </div>
+            </div>
         </div>
 
         <!-- CENTER MAIN CONTENT -->
@@ -484,15 +525,6 @@
                     Your browser does not support the video tag.
                 </video>
                 <div class="banner-overlay"></div>
-            </div>
-
-            <!-- ROTATING & SPRINGING GIFT BOX REVEAL BANNER -->
-            <div class="gift-reveal-container">
-                <div class="gift-box-icon">🎁</div>
-                <div class="offer-message-box">
-                    <h2>Today Special Offers Available!</h2>
-                    <p>ప్రత్యేకమైన ఆఫర్స్ అందుబాటులో ఉన్నాయి! త్వరగా కాల్ చేయండి! 📞</p>
-                </div>
             </div>
 
             <!-- Welcome Section -->
@@ -558,11 +590,10 @@
 
         </div>
 
-        <!-- RIGHT LARGE SIDE PANEL -->
-        <div class="side-panel">
+        <!-- RIGHT SIDE PANEL (ONLY PHOTO) -->
+        <div class="side-panel-right">
             <h3>🌟 Smiley Gift Shop</h3>
             <img src="my_photo2.png" alt="My Photo 2" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600'">
-            <p>🌟 Best Quality Gifts in Chirala</p>
         </div>
 
     </div>
@@ -579,6 +610,26 @@
     </footer>
 
     <script>
+        /* --- DYNAMIC OFFER TEXT ROTATOR (English & Telugu) --- */
+        const offers = [
+            "Today Special Offers Available!",
+            "ప్రత్యేకమైన ఆఫర్స్ అందుబాటులో ఉన్నాయి!"
+        ];
+        let currentOfferIndex = 0;
+
+        function rotateOffers() {
+            const textElement = document.getElementById('dynamicOfferText');
+            if (textElement) {
+                textElement.style.opacity = 0;
+                setTimeout(() => {
+                    currentOfferIndex = (currentOfferIndex + 1) % offers.length;
+                    textElement.innerText = offers[currentOfferIndex];
+                    textElement.style.opacity = 1;
+                }, 400);
+            }
+        }
+        setInterval(rotateOffers, 3500);
+
         function openModal(imgSrc, captionText) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
