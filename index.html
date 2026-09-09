@@ -5,63 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smiley Gifts Center - Chirala</title>
     <style>
+        :root {
+            --primary: #800020;
+            --accent: #d4af37;
+            --dark: #1a1a1a;
+            --light: #fdfbf7;
+            --gray: #666;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         body {
-            background-color: #f9f9f9;
+            background-color: var(--light);
             color: #333;
             line-height: 1.6;
         }
 
         /* --- PROFESSIONAL HEADER --- */
         header {
-            background: #1a1a1a;
+            background: var(--dark);
             color: #ffffff;
-            padding: 15px 30px;
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid #d4af37;
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         header h1 {
-            font-size: 1.5rem;
-            color: #d4af37;
+            font-size: 1.4rem;
+            color: var(--accent);
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .header-phone {
-            background: #d4af37;
-            color: #1a1a1a;
+            background: var(--accent);
+            color: var(--dark);
             padding: 8px 20px;
-            border-radius: 4px;
+            border-radius: 30px;
             font-weight: bold;
             text-decoration: none;
             transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(212,175,55,0.3);
         }
         .header-phone:hover {
             background: #fff;
+            transform: translateY(-2px);
         }
 
         /* --- RESPONSIVE BANNER & VIDEO CONTAINER --- */
         .banner-container {
             width: 100%;
-            /* లాప్‌టాప్ కోసం డిఫాల్ట్ ఆస్పెక్ట్ రేషియో లేదా హైట్ (ఇమేజ్ సైజుకి తగినట్లు మారుతుంది) */
-            aspect-ratio: 16 / 9; /* ఇది ఇమేజ్ కట్ అవ్వకుండా ఆటోమేటిక్‌గా హైట్‌ని అడ్జస్ట్ చేస్తుంది */
-            max-height: 550px;
-            min-height: 220px;
+            aspect-ratio: 16 / 9;
+            max-height: 500px;
+            min-height: 250px;
             position: relative;
             overflow: hidden;
             background: #000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* 1. Original Shop Banner (.png) - మొబైల్ & లాప్‌టాప్ రెండింటిలోనూ పర్ఫెక్ట్ ఫిట్ */
         .original-shop-banner {
             position: absolute;
             top: 0;
@@ -69,7 +85,7 @@
             width: 100%;
             height: 100%;
             background-image: url('banner.png');
-            background-size: 100% 100%; /* స్క్రీన్ వెడల్పు, ఎత్తుకి సరిగ్గా స్ట్రెచ్ అవకుండా ఫిట్ అవుతుంది */
+            background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
             z-index: 10;
@@ -81,14 +97,13 @@
             pointer-events: none;
         }
 
-        /* 2. Background Video (.mp4) */
         .banner-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* వీడియో స్క్రీన్‌కి సరిగ్గా నిండుగా వస్తుంది */
+            object-fit: cover;
             background: #000;
             z-index: 1;
         }
@@ -99,12 +114,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.25);
             z-index: 2;
             pointer-events: none;
         }
 
-        /* 3. Ending Wave & Zoom Text Effect */
         .wave-text-container {
             position: absolute;
             top: 50%;
@@ -126,10 +140,10 @@
         }
 
         .wave-letter {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             color: #ffd700;
-            text-shadow: 4px 4px 8px #000, 0 0 25px rgba(255, 215, 0, 0.9);
+            text-shadow: 3px 3px 6px #000, 0 0 20px rgba(255, 215, 0, 0.8);
             display: inline-block;
             animation: waveMotion 0.6s ease-in-out infinite alternate;
         }
@@ -138,12 +152,12 @@
 
         @keyframes waveMotion {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
+            100% { transform: translateY(-8px); }
         }
 
         @keyframes finalZoomOut {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
         }
 
         /* --- WEBSITE BODY CONTENT --- */
@@ -156,14 +170,16 @@
             background: #ffffff;
             padding: 35px;
             margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border-top: 4px solid #800020;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--primary);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-top: 4px solid var(--primary);
         }
         .card h2 {
-            color: #800020;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.7rem;
             text-align: center;
             letter-spacing: 0.5px;
         }
@@ -173,6 +189,7 @@
             position: relative;
             display: flex;
             align-items: center;
+            margin-top: 15px;
         }
 
         .gallery-container {
@@ -190,55 +207,60 @@
 
         .scroll-item {
             background: #ffffff;
-            border: 1px solid #d4af37;
+            border: 1px solid #eaeaea;
             padding: 15px;
             text-align: center;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 10px;
+            font-size: 1.05rem;
             font-weight: 600;
-            color: #333;
+            color: #444;
             cursor: pointer;
-            min-width: 220px;
+            min-width: 210px;
             flex: 0 0 auto;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .scroll-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(212,175,55,0.3);
-            border-color: #800020;
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(128,0,32,0.12);
+            border-color: var(--accent);
         }
 
         .scroll-item img {
             width: 100%;
-            height: 150px;
+            height: 160px;
             object-fit: contain;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background: #f9f9f9;
+            padding: 5px;
         }
 
         .gallery-btn {
-            background: #800020;
+            background: var(--primary);
             color: white;
-            border: 2px solid #d4af37;
-            font-size: 1.5rem;
+            border: 2px solid var(--accent);
+            font-size: 1.3rem;
             cursor: pointer;
-            padding: 12px 16px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
             position: absolute;
             z-index: 10;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: 0.3s;
         }
         .gallery-btn:hover {
-            background: #d4af37;
-            color: #1a1a1a;
+            background: var(--accent);
+            color: var(--dark);
             transform: scale(1.1);
         }
-        .gallery-prev { left: -20px; }
-        .gallery-next { right: -20px; }
+        .gallery-prev { left: -22px; }
+        .gallery-next { right: -22px; }
 
         /* --- MODAL ZOOM POPUP --- */
         .modal {
@@ -249,89 +271,90 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0,0,0,0.85);
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            backdrop-filter: blur(5px);
         }
         .modal img {
             max-width: 85%;
             max-height: 75vh;
-            border-radius: 8px;
-            border: 4px solid #d4af37;
+            border-radius: 10px;
+            border: 3px solid var(--accent);
             background: white;
             object-fit: contain;
-            box-shadow: 0 0 25px rgba(212,175,55,0.5);
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
         }
         .close-btn {
             position: absolute;
             top: 25px;
             right: 40px;
             color: #fff;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
         }
         .close-btn:hover {
-            color: #d4af37;
+            color: var(--accent);
         }
         .modal-caption {
-            color: #d4af37;
+            color: var(--accent);
             margin-top: 20px;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: bold;
             text-align: center;
         }
 
         /* --- CONTACT & OPENING HOURS SECTION --- */
         .contact-box {
-            background: #1a1a1a;
+            background: var(--dark);
             color: white;
-            padding: 35px;
-            border-radius: 10px;
+            padding: 40px;
+            border-radius: 12px;
             text-align: center;
-            border: 2px solid #d4af37;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 2px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .contact-box h2 {
-            color: #d4af37;
+            color: var(--accent);
             margin-bottom: 20px;
         }
         .contact-details {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             margin: 15px 0;
-            color: #ddd;
+            color: #ccc;
             text-align: left;
-            max-width: 500px;
+            max-width: 550px;
             margin-left: auto;
             margin-right: auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #444;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .contact-details p {
-            margin: 8px 0;
+            margin: 10px 0;
         }
         
         .toggle-hours-btn {
             display: block;
             width: 100%;
-            background: #222;
-            color: #d4af37;
-            border: 1px dashed #d4af37;
-            padding: 10px;
-            border-radius: 6px;
+            background: #252525;
+            color: var(--accent);
+            border: 1px dashed var(--accent);
+            padding: 12px;
+            border-radius: 8px;
             font-weight: bold;
-            font-size: 1.05rem;
+            font-size: 1rem;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: 0.3s;
         }
         .toggle-hours-btn:hover {
-            background: #d4af37;
-            color: #1a1a1a;
+            background: var(--accent);
+            color: var(--dark);
             border-style: solid;
         }
 
@@ -349,23 +372,23 @@
         .hours-table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
             overflow: hidden;
         }
         .hours-table th {
             text-align: left;
-            color: #d4af37;
-            border-bottom: 1px solid #555;
-            padding: 8px 10px;
-            font-size: 1.1rem;
-            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent);
+            border-bottom: 1px solid #444;
+            padding: 10px 15px;
+            font-size: 1.05rem;
+            background: rgba(212, 175, 55, 0.08);
         }
         .hours-table td {
-            padding: 6px 10px;
+            padding: 8px 15px;
             font-size: 0.95rem;
-            color: #ccc;
-            border-bottom: 1px solid #333;
+            color: #bbb;
+            border-bottom: 1px solid #2a2a2a;
         }
         .hours-table td:last-child {
             text-align: right;
@@ -375,15 +398,15 @@
 
         .call-now-btn {
             display: inline-block;
-            background: #d4af37;
-            color: #1a1a1a;
-            padding: 12px 35px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 14px 40px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+            font-size: 1.15rem;
+            margin-top: 25px;
+            box-shadow: 0 5px 20px rgba(212,175,55,0.3);
             transition: transform 0.3s, background 0.3s;
         }
         .call-now-btn:hover {
@@ -396,15 +419,15 @@
             padding: 25px;
             background: #111;
             color: #888;
-            margin-top: 40px;
-            font-size: 1rem;
-            border-top: 1px solid #333;
+            margin-top: 50px;
+            font-size: 0.95rem;
+            border-top: 1px solid #222;
         }
 
         /* --- MOBILE RESPONSIVE --- */
         @media screen and (max-width: 768px) {
             header {
-                padding: 12px 15px;
+                padding: 12px 20px;
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
@@ -412,39 +435,31 @@
             header h1 {
                 font-size: 1.2rem;
             }
-            .header-phone {
-                padding: 6px 15px;
-                font-size: 0.95rem;
-            }
-
-            /* మొబైల్‌లో స్క్రీన్ సైజుకి తగ్గట్టు బ్యానర్ ఆటోమేటిక్‌గా అడ్జస్ట్ అవుతుంది */
             .banner-container {
-                aspect-ratio: 16 / 9; 
-                max-height: 260px;
+                max-height: 240px;
             }
-
             .wave-letter {
-                font-size: 2.1rem;
+                font-size: 2rem;
             }
             .container {
                 margin: 20px auto;
-                padding: 0 10px;
+                padding: 0 12px;
             }
             .card {
-                padding: 20px 15px;
+                padding: 22px 15px;
             }
             .card h2 {
-                font-size: 1.4rem;
+                font-size: 1.35rem;
             }
             .gallery-btn {
                 display: none; 
             }
             .contact-box {
-                padding: 20px 15px;
+                padding: 25px 15px;
             }
             .contact-details {
-                font-size: 1rem;
-                padding: 15px 10px;
+                font-size: 0.95rem;
+                padding: 15px;
             }
         }
     </style>
@@ -509,16 +524,16 @@
     </div>
 
     <div class="container">
-        <!-- About Us -->
+        <!-- Welcome Section (అడ్రస్ తొలగించబడింది, కేవలం గిఫ్ట్స్ గురించి మాత్రమే) -->
         <div class="card">
-            <h2>Welcome to Smiley Gifts Center</h2>
-            <p style="text-align: center; font-size: 1.1rem; color: #555;">Located in <strong>Chirala (Polimera Rd, opposite HDFC Bank)</strong>. We bring your special moments to life with stunning photo frames, god idols, giant teddy bears, and luxury perfumes.</p>
+            <h2>Welcome to Smiley Gifts &amp; Perfumes</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: var(--gray);">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
         </div>
 
         <!-- GIFTS GALLERY -->
         <div class="card">
             <h2>Trending Gifts &amp; Perfumes Showcase</h2>
-            <p style="text-align: center; margin-bottom: 20px; font-weight: 500; color: #666;">Click on any item to view full screen, or use buttons to move left/right:</p>
+            <p style="text-align: center; margin-bottom: 20px; font-weight: 500; color: #777;">Click on any item to view full screen:</p>
             
             <div class="gallery-wrapper">
                 <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
@@ -544,21 +559,21 @@
                         <img src="ceddyss.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
                         Couple Love Showpiece
                     </div>
-                    <div class="scroll-item" onclick="openModal('jeddyss.png', 'frame')">
-                        <img src="jeddyss.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
-                        frame
+                    <div class="scroll-item" onclick="openModal('jeddyss.png', 'Designer Photo Frame')">
+                        <img src="jeddyss.png" alt="Frame" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
+                        Designer Frame
                     </div>
-                    <div class="scroll-item" onclick="openModal('leddyss.png', 'teddys')">
-                        <img src="leddyss.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
-                        teddys
+                    <div class="scroll-item" onclick="openModal('leddyss.png', 'Cute Teddy Bears')">
+                        <img src="leddyss.png" alt="Teddys" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
+                        Cute Teddys
                     </div>
-                    <div class="scroll-item" onclick="openModal('beddyss.png', 'krishna')">
-                        <img src="beddyss.png" alt="Couple" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
-                        krishna
+                    <div class="scroll-item" onclick="openModal('beddyss.png', 'Krishna Idol Frame')">
+                        <img src="beddyss.png" alt="Krishna" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
+                        Krishna Frame
                     </div>
-                    <div class="scroll-item" onclick="openModal('seddyss.png', 'Smily Gift Shop')">
+                    <div class="scroll-item" onclick="openModal('seddyss.png', 'Smiley Gift Shop Collection')">
                         <img src="seddyss.png" alt="Shop" onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400'">
-                        Smily Gift Shop
+                        Gift Collection
                     </div>
                 </div>
 
@@ -566,14 +581,14 @@
             </div>
         </div>
 
-        <!-- Contact & Opening Hours Section with Toggle Button -->
+        <!-- Contact & Opening Hours Section -->
         <div class="contact-box">
             <h2>Visit Us / Store Timings</h2>
             <div class="contact-details">
                 <p><strong>Address:</strong> Polimera Rd, opp. HDFC Bank, Chirala, Andhra Pradesh - 523155</p>
                 <p style="margin-top: 10px;"><strong>Phone / WhatsApp:</strong> 91331 96199</p>
                 
-                <button class="toggle-hours-btn" onclick="toggleHours()">🕒 View Opening Hours</button>
+                <button class="toggle-hours-btn" onclick="toggleHours()">🕒 View Store Opening Hours</button>
                 
                 <div id="hoursDropdown">
                     <table class="hours-table">
