@@ -78,7 +78,7 @@
             gap: 25px;
         }
 
-        /* --- LEFT SIDE PANEL WITH GIFT BOX REVEAL ANIMATION --- */
+        /* --- LEFT SIDE PANEL WITH SPARK & REPEAT GIFT ANIMATION --- */
         .side-panel-left {
             width: 340px;
             background: var(--white);
@@ -114,31 +114,31 @@
             object-fit: cover;
         }
 
-        /* --- GIFT BOX & POPUP TEXT OVERLAY ON LEFT PHOTO --- */
+        /* --- GIFT BOX & SPARK ANIMATION OVERLAY --- */
         .gift-overlay-box {
             position: absolute;
             bottom: 15px;
             left: 10px;
             right: 10px;
-            background: rgba(0, 37, 108, 0.92);
+            background: rgba(0, 37, 108, 0.94);
             border: 2px solid var(--accent-gold);
             padding: 15px;
             border-radius: 12px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            animation: popupSpring 0.6s ease-out;
+            animation: giftCycleAnimation 7s infinite ease-in-out;
         }
 
         .gift-icon-anim {
             font-size: 2.2rem;
             display: inline-block;
-            animation: giftBounce 1.5s infinite ease-in-out;
+            animation: giftBounce 1.2s infinite ease-in-out;
             margin-bottom: 5px;
         }
 
         @keyframes giftBounce {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-8px) scale(1.1); }
+            50% { transform: translateY(-6px) scale(1.1); }
         }
 
         .dynamic-offer-text {
@@ -170,10 +170,38 @@
             transform: scale(1.05);
         }
 
-        @keyframes popupSpring {
-            0% { transform: scale(0.3); opacity: 0; }
-            70% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
+        /* Keyframes for opening, staying, sparking & disappearing loop */
+        @keyframes giftCycleAnimation {
+            0% { 
+                transform: scale(0.2); 
+                opacity: 0; 
+                filter: brightness(3); 
+            }
+            12% { 
+                transform: scale(1.05); 
+                opacity: 1; 
+                filter: brightness(1); 
+            }
+            18% { 
+                transform: scale(1); 
+                opacity: 1; 
+                filter: brightness(1); 
+            }
+            78% { 
+                transform: scale(1); 
+                opacity: 1; 
+                filter: brightness(1); 
+            }
+            88% { 
+                transform: scale(1.15); 
+                opacity: 0.7; 
+                filter: brightness(2.5) drop-shadow(0 0 15px #ffc107); 
+            }
+            100% { 
+                transform: scale(0.1); 
+                opacity: 0; 
+                filter: brightness(4); 
+            }
         }
 
         /* --- RIGHT LARGE SIDE PANEL (ONLY PHOTO) --- */
@@ -226,10 +254,8 @@
 
         .original-shop-banner {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: url('banner.png');
             background-size: 100% 100%;
             background-repeat: no-repeat;
@@ -337,11 +363,8 @@
             border: 2px solid var(--paytm-sky);
             font-size: 1.3rem;
             cursor: pointer;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
             position: absolute;
             z-index: 10;
@@ -369,8 +392,7 @@
             color: #d1e3f8;
             text-align: left;
             max-width: 580px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: auto; margin-right: auto;
             background: rgba(0, 185, 241, 0.08);
             padding: 25px;
             border-radius: 12px;
@@ -497,14 +519,14 @@
     <!-- Main Layout -->
     <div class="main-layout">
         
-        <!-- LEFT SIDE PANEL WITH DYNAMIC GIFT REVEAL ON PHOTO -->
+        <!-- LEFT SIDE PANEL WITH SPARK & REPEAT REVEAL ON PHOTO -->
         <div class="side-panel-left">
             <h3>🎁 Creator Special</h3>
             <div class="photo-box-container">
                 <img src="my_photo1.png" alt="My Photo 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
                 
-                <!-- Gift Box & Rotating Offer Text Overlay -->
-                <div class="gift-overlay-box">
+                <!-- Gift Box & Rotating Offer Text Overlay with Spark Exit -->
+                <div class="gift-overlay-box" id="giftOverlayBox">
                     <div class="gift-icon-anim">🎁</div>
                     <div id="dynamicOfferText" class="dynamic-offer-text">
                         Today Special Offers Available!
@@ -610,7 +632,7 @@
     </footer>
 
     <script>
-        /* --- DYNAMIC OFFER TEXT ROTATOR (English & Telugu) --- */
+        /* --- DYNAMIC OFFER TEXT ROTATOR (English & Telugu inside the box) --- */
         const offers = [
             "Today Special Offers Available!",
             "ప్రత్యేకమైన ఆఫర్స్ అందుబాటులో ఉన్నాయి!"
@@ -625,10 +647,20 @@
                     currentOfferIndex = (currentOfferIndex + 1) % offers.length;
                     textElement.innerText = offers[currentOfferIndex];
                     textElement.style.opacity = 1;
-                }, 400);
+                }, 300);
             }
         }
         setInterval(rotateOffers, 3500);
+
+        /* --- SMOOTH RE-TRIGGER FOR SPARK & DISAPPEAR LOOP --- */
+        setInterval(() => {
+            const box = document.getElementById('giftOverlayBox');
+            if(box) {
+                box.style.animation = 'none';
+                box.offsetHeight; // trigger reflow
+                box.style.animation = 'giftCycleAnimation 7s infinite ease-in-out';
+            }
+        }, 7000);
 
         function openModal(imgSrc, captionText) {
             const modal = document.getElementById('imageModal');
