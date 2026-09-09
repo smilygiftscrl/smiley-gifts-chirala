@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=1200px, initial-scale=1.0">
     <title>Smiley Gifts Center - Chirala</title>
     <style>
         :root {
@@ -25,8 +25,8 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
-            overflow-x: hidden;
-            width: 100%;
+            overflow-x: auto;
+            width: 1200px;
         }
 
         /* --- VIBRANT HEADER --- */
@@ -42,7 +42,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            width: 100%;
+            width: 1200px;
         }
         header h1 {
             font-size: 1.3rem;
@@ -73,16 +73,15 @@
         .main-layout {
             display: flex;
             justify-content: space-between;
-            max-width: 1650px;
+            width: 1200px;
             margin: 20px auto;
             padding: 0 10px;
             gap: 20px;
-            width: 100%;
         }
 
         /* --- LEFT SIDE PANEL --- */
         .side-panel-left {
-            width: 320px;
+            width: 300px;
             background: var(--white);
             border-radius: 18px;
             padding: 15px;
@@ -117,15 +116,15 @@
             object-fit: cover;
         }
 
-        /* --- GIFT BOX & SPARK ANIMATION OVERLAY (మొబైల్ కోసం మరింత కాంపాక్ట్ సైజ్) --- */
+        /* --- GIFT BOX & SPARK ANIMATION OVERLAY --- */
         .gift-overlay-box {
             position: absolute;
-            bottom: 8px;
-            left: 8px;
-            right: 8px;
-            background: rgba(0, 37, 108, 0.94);
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0, 37, 108, 0.92);
             border: 2px solid var(--accent-gold);
-            padding: 8px 10px;
+            padding: 10px;
             border-radius: 10px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
@@ -133,7 +132,7 @@
         }
 
         .gift-icon-anim {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             display: inline-block;
             animation: giftBounce 1.2s infinite ease-in-out;
             margin-bottom: 2px;
@@ -141,14 +140,14 @@
 
         @keyframes giftBounce {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-4px) scale(1.1); }
+            50% { transform: translateY(-5px) scale(1.1); }
         }
 
         .dynamic-offer-text {
             color: var(--white);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            min-height: 28px;
+            min-height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,10 +157,10 @@
 
         .offer-phone-link {
             display: inline-block;
-            margin-top: 4px;
+            margin-top: 5px;
             background: var(--paytm-sky);
             color: var(--paytm-blue);
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
             font-weight: 800;
             text-decoration: none;
@@ -180,7 +179,7 @@
 
         /* --- RIGHT SIDE PANEL --- */
         .side-panel-right {
-            width: 320px;
+            width: 300px;
             background: var(--white);
             border-radius: 18px;
             padding: 15px;
@@ -209,15 +208,15 @@
 
         /* --- CENTER CONTENT AREA --- */
         .center-content {
-            flex: 1;
-            min-width: 0;
+            width: 540px;
+            flex-shrink: 0;
         }
 
         /* --- BANNER & VIDEO CONTAINER --- */
         .banner-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            max-height: 420px;
+            max-height: 310px;
             position: relative;
             overflow: hidden;
             background: #000;
@@ -274,7 +273,7 @@
         .card h2 {
             color: var(--paytm-blue);
             margin-bottom: 12px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-align: center;
             font-weight: 800;
         }
@@ -308,7 +307,7 @@
             font-weight: 700;
             color: var(--paytm-blue);
             cursor: pointer;
-            min-width: 180px;
+            min-width: 150px;
             flex: 0 0 auto;
             box-shadow: 0 6px 18px rgba(0,37,108,0.06);
             transition: all 0.3s ease;
@@ -316,7 +315,7 @@
 
         .scroll-item img {
             width: 100%;
-            height: 130px;
+            height: 110px;
             object-fit: contain;
             border-radius: 10px;
             margin-bottom: 8px;
@@ -350,13 +349,13 @@
             border: 3px solid var(--paytm-sky);
             box-shadow: 0 15px 40px rgba(0,37,108,0.3);
         }
-        .contact-box h2 { color: var(--paytm-sky); margin-bottom: 15px; font-size: 1.4rem; }
+        .contact-box h2 { color: var(--paytm-sky); margin-bottom: 15px; font-size: 1.3rem; }
         .contact-details {
             font-size: 0.95rem;
             margin: 10px 0;
             color: #d1e3f8;
             text-align: left;
-            max-width: 520px;
+            max-width: 480px;
             margin-left: auto; margin-right: auto;
             background: rgba(0, 185, 241, 0.08);
             padding: 18px;
@@ -426,6 +425,7 @@
             margin-top: 30px;
             font-size: 0.85rem;
             border-top: 2px solid rgba(0,185,241,0.2);
+            width: 1200px;
         }
 
         /* --- MODAL ZOOM POPUP --- */
@@ -434,82 +434,24 @@
             position: fixed;
             z-index: 9999;
             left: 0; top: 0;
-            width: 100%; height: 100%;
+            width: 1200px; height: 100vh;
             background-color: rgba(0, 20, 50, 0.9);
             justify-content: center; align-items: center;
             flex-direction: column;
             backdrop-filter: blur(8px);
         }
         .modal img {
-            max-width: 90%; max-height: 75vh;
+            max-width: 800px; max-height: 75vh;
             border-radius: 14px; border: 4px solid var(--paytm-sky);
             background: white; object-fit: contain;
         }
         .close-btn {
-            position: absolute; top: 20px; right: 30px;
+            position: absolute; top: 20px; right: 50px;
             color: #fff; font-size: 3rem; font-weight: bold; cursor: pointer;
         }
         .modal-caption {
             color: var(--paytm-sky); margin-top: 15px;
             font-size: 1.2rem; font-weight: 800; text-align: center;
-        }
-
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        @media screen and (max-width: 1200px) {
-            .main-layout {
-                flex-direction: column;
-                align-items: center;
-                padding: 0 15px;
-            }
-            .side-panel-left, .side-panel-right {
-                width: 100%;
-                max-width: 100%;
-                position: static;
-                height: auto;
-            }
-            .photo-box-container, .side-panel-right img {
-                height: 360px;
-            }
-            .center-content {
-                width: 100%;
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            header {
-                padding: 10px 15px;
-            }
-            header h1 {
-                font-size: 1.1rem;
-            }
-            .header-phone {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-            .main-layout {
-                padding: 0 8px;
-                margin: 10px auto;
-                gap: 15px;
-            }
-            .card {
-                padding: 15px;
-                margin-bottom: 15px;
-            }
-            .card h2 {
-                font-size: 1.2rem;
-            }
-            .photo-box-container {
-                height: 320px;
-            }
-            .side-panel-right img {
-                height: 280px;
-            }
-            .gallery-btn {
-                display: none;
-            }
-            .contact-box {
-                padding: 20px 15px;
-            }
         }
     </style>
 </head>
@@ -524,13 +466,12 @@
     <!-- Main Layout -->
     <div class="main-layout">
         
-        <!-- LEFT SIDE PANEL WITH SPARK & REPEAT REVEAL ON PHOTO -->
+        <!-- LEFT SIDE PANEL -->
         <div class="side-panel-left">
             <h3>🎁 Creator Special</h3>
             <div class="photo-box-container">
                 <img src="my_photo1.png" alt="My Photo 1" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600'">
                 
-                <!-- Gift Box & Rotating Offer Text Overlay -->
                 <div class="gift-overlay-box" id="giftOverlayBox">
                     <div class="gift-icon-anim">🎁</div>
                     <div id="dynamicOfferText" class="dynamic-offer-text">
@@ -544,7 +485,6 @@
         <!-- CENTER MAIN CONTENT -->
         <div class="center-content">
             
-            <!-- Banner & Video Timeline Flow -->
             <div class="banner-container">
                 <div id="shopBanner" class="original-shop-banner"></div>
                 <video id="bgVideo" autoplay muted playsinline webkit-playsinline class="banner-video">
@@ -554,16 +494,15 @@
                 <div class="banner-overlay"></div>
             </div>
 
-            <!-- Welcome Section -->
             <div class="card">
                 <h2>Welcome to Smiley Gifts &amp; Perfumes</h2>
-                <p style="text-align: center; font-size: 1rem; color: #4a5568;">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
+                <p style="text-align: center; font-size: 0.95rem; color: #4a5568;">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
             </div>
 
             <!-- GIFTS GALLERY -->
             <div class="card">
                 <h2>Trending Gifts &amp; Perfumes Showcase</h2>
-                <p style="text-align: center; margin-bottom: 15px; font-weight: 600; font-size: 0.9rem; color: #55708a;">Click on any item to view full screen:</p>
+                <p style="text-align: center; margin-bottom: 12px; font-weight: 600; font-size: 0.85rem; color: #55708a;">Click on any item to view full screen:</p>
                 
                 <div class="gallery-wrapper">
                     <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
@@ -681,7 +620,7 @@
 
         function scrollGallery(direction) {
             const container = document.getElementById('galleryContainer');
-            container.scrollBy({ left: direction * 220, behavior: 'smooth' });
+            container.scrollBy({ left: direction * 180, behavior: 'smooth' });
         }
 
         function toggleHours() {
