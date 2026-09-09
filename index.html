@@ -6,11 +6,12 @@
     <title>Smiley Gifts Center - Chirala</title>
     <style>
         :root {
-            --primary: #800020;
-            --accent: #d4af37;
-            --dark: #1a1a1a;
-            --light: #fdfbf7;
-            --gray: #666;
+            --paytm-blue: #00256c;
+            --paytm-sky: #00b9f1;
+            --accent-gold: #ffc107;
+            --bg-light: #f4f7fb;
+            --text-dark: #111111;
+            --white: #ffffff;
         }
 
         * {
@@ -21,61 +22,62 @@
         }
         
         body {
-            background-color: var(--light);
-            color: #333;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
         }
 
-        /* --- PROFESSIONAL HEADER --- */
+        /* --- VIBRANT HEADER --- */
         header {
-            background: var(--dark);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--paytm-blue), #00153b);
+            color: var(--white);
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid var(--accent);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border-bottom: 4px solid var(--paytm-sky);
+            box-shadow: 0 4px 20px rgba(0,37,108,0.25);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
         header h1 {
-            font-size: 1.4rem;
-            color: var(--accent);
-            letter-spacing: 1px;
+            font-size: 1.5rem;
+            color: var(--white);
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 800;
+        }
+        header h1 span {
+            color: var(--paytm-sky);
         }
         .header-phone {
-            background: var(--accent);
-            color: var(--dark);
-            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--paytm-sky), #0088cc);
+            color: var(--white);
+            padding: 10px 22px;
             border-radius: 30px;
             font-weight: bold;
             text-decoration: none;
             transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(212,175,55,0.3);
+            box-shadow: 0 4px 15px rgba(0,185,241,0.4);
         }
         .header-phone:hover {
-            background: #fff;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,185,241,0.6);
         }
 
-        /* --- RESPONSIVE BANNER & VIDEO CONTAINER --- */
+        /* --- BANNER & VIDEO CONTAINER --- */
         .banner-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            max-height: 500px;
+            max-height: 520px;
             min-height: 250px;
             position: relative;
             overflow: hidden;
             background: #000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
         }
 
         .original-shop-banner {
@@ -114,7 +116,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 37, 108, 0.3);
             z-index: 2;
             pointer-events: none;
         }
@@ -142,8 +144,8 @@
         .wave-letter {
             font-size: 3.2rem;
             font-weight: 900;
-            color: #ffd700;
-            text-shadow: 3px 3px 6px #000, 0 0 20px rgba(255, 215, 0, 0.8);
+            color: var(--paytm-sky);
+            text-shadow: 3px 3px 6px #000, 0 0 25px rgba(0, 185, 241, 0.9);
             display: inline-block;
             animation: waveMotion 0.6s ease-in-out infinite alternate;
         }
@@ -160,45 +162,46 @@
             100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
         }
 
-        /* --- WEBSITE BODY CONTENT --- */
+        /* --- BODY CONTENT --- */
         .container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 40px auto;
             padding: 0 20px;
         }
         .card {
-            background: #ffffff;
-            padding: 35px;
+            background: var(--white);
+            padding: 40px;
             margin-bottom: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-            border-top: 4px solid var(--primary);
-            border: 1px solid rgba(0,0,0,0.06);
-            border-top: 4px solid var(--primary);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,37,108,0.08);
+            border-top: 5px solid var(--paytm-sky);
+            border-left: 1px solid rgba(0,185,241,0.2);
+            border-right: 1px solid rgba(0,185,241,0.2);
+            border-bottom: 1px solid rgba(0,185,241,0.2);
         }
         .card h2 {
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-size: 1.7rem;
+            color: var(--paytm-blue);
+            margin-bottom: 15px;
+            font-size: 1.9rem;
             text-align: center;
-            letter-spacing: 0.5px;
+            font-weight: 800;
         }
 
-        /* --- GIFTS GALLERY WITH MANUAL SCROLL BUTTONS --- */
+        /* --- GIFTS GALLERY --- */
         .gallery-wrapper {
             position: relative;
             display: flex;
             align-items: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .gallery-container {
             display: flex;
-            gap: 20px;
+            gap: 22px;
             overflow-x: auto;
             scroll-behavior: smooth;
             width: 100%;
-            padding: 15px 5px;
+            padding: 20px 5px;
             scrollbar-width: none;
         }
         .gallery-container::-webkit-scrollbar {
@@ -206,61 +209,62 @@
         }
 
         .scroll-item {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            padding: 15px;
+            background: var(--white);
+            border: 2px solid #e1ecf7;
+            padding: 18px;
             text-align: center;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: #444;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--paytm-blue);
             cursor: pointer;
-            min-width: 210px;
+            min-width: 225px;
             flex: 0 0 auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 6px 18px rgba(0,37,108,0.06);
+            transition: all 0.3s ease;
         }
 
         .scroll-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(128,0,32,0.12);
-            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,185,241,0.25);
+            border-color: var(--paytm-sky);
+            background: linear-gradient(to bottom, #ffffff, #f0f9ff);
         }
 
         .scroll-item img {
             width: 100%;
-            height: 160px;
+            height: 165px;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 12px;
-            background: #f9f9f9;
-            padding: 5px;
+            background: #f7fafd;
+            padding: 8px;
         }
 
         .gallery-btn {
-            background: var(--primary);
+            background: var(--paytm-blue);
             color: white;
-            border: 2px solid var(--accent);
-            font-size: 1.3rem;
+            border: 2px solid var(--paytm-sky);
+            font-size: 1.4rem;
             cursor: pointer;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             position: absolute;
             z-index: 10;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,37,108,0.3);
             transition: 0.3s;
         }
         .gallery-btn:hover {
-            background: var(--accent);
-            color: var(--dark);
+            background: var(--paytm-sky);
+            color: var(--paytm-blue);
             transform: scale(1.1);
         }
-        .gallery-prev { left: -22px; }
-        .gallery-next { right: -22px; }
+        .gallery-prev { left: -25px; }
+        .gallery-next { right: -25px; }
 
         /* --- MODAL ZOOM POPUP --- */
         .modal {
@@ -271,96 +275,95 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85);
+            background-color: rgba(0, 20, 50, 0.9);
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
         .modal img {
             max-width: 85%;
             max-height: 75vh;
-            border-radius: 10px;
-            border: 3px solid var(--accent);
+            border-radius: 14px;
+            border: 4px solid var(--paytm-sky);
             background: white;
             object-fit: contain;
-            box-shadow: 0 0 30px rgba(212,175,55,0.4);
+            box-shadow: 0 0 40px rgba(0,185,241,0.6);
         }
         .close-btn {
             position: absolute;
             top: 25px;
             right: 40px;
             color: #fff;
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
         }
         .close-btn:hover {
-            color: var(--accent);
+            color: var(--paytm-sky);
         }
         .modal-caption {
-            color: var(--accent);
+            color: var(--paytm-sky);
             margin-top: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.6rem;
+            font-weight: 800;
             text-align: center;
         }
 
         /* --- CONTACT & OPENING HOURS SECTION --- */
         .contact-box {
-            background: var(--dark);
+            background: linear-gradient(135deg, var(--paytm-blue), #00153b);
             color: white;
-            padding: 40px;
-            border-radius: 12px;
+            padding: 45px;
+            border-radius: 16px;
             text-align: center;
-            border: 2px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 3px solid var(--paytm-sky);
+            box-shadow: 0 15px 40px rgba(0,37,108,0.3);
         }
         .contact-box h2 {
-            color: var(--accent);
-            margin-bottom: 20px;
+            color: var(--paytm-sky);
+            margin-bottom: 25px;
         }
         .contact-details {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin: 15px 0;
-            color: #ccc;
+            color: #d1e3f8;
             text-align: left;
-            max-width: 550px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 25px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0, 185, 241, 0.08);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,185,241,0.3);
         }
         .contact-details p {
-            margin: 10px 0;
+            margin: 12px 0;
         }
         
         .toggle-hours-btn {
             display: block;
             width: 100%;
-            background: #252525;
-            color: var(--accent);
-            border: 1px dashed var(--accent);
-            padding: 12px;
-            border-radius: 8px;
+            background: rgba(0, 37, 108, 0.8);
+            color: var(--paytm-sky);
+            border: 2px solid var(--paytm-sky);
+            padding: 14px;
+            border-radius: 10px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
             transition: 0.3s;
         }
         .toggle-hours-btn:hover {
-            background: var(--accent);
-            color: var(--dark);
-            border-style: solid;
+            background: var(--paytm-sky);
+            color: var(--paytm-blue);
         }
 
         #hoursDropdown {
             display: none;
-            margin-top: 15px;
+            margin-top: 20px;
             animation: fadeIn 0.4s ease-in-out;
         }
 
@@ -372,56 +375,57 @@
         .hours-table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 8px;
+            background: rgba(0, 20, 50, 0.6);
+            border-radius: 10px;
             overflow: hidden;
+            border: 1px solid rgba(0,185,241,0.2);
         }
         .hours-table th {
             text-align: left;
-            color: var(--accent);
-            border-bottom: 1px solid #444;
-            padding: 10px 15px;
-            font-size: 1.05rem;
-            background: rgba(212, 175, 55, 0.08);
+            color: var(--paytm-sky);
+            border-bottom: 2px solid rgba(0,185,241,0.3);
+            padding: 12px 18px;
+            font-size: 1.1rem;
+            background: rgba(0, 185, 241, 0.12);
         }
         .hours-table td {
-            padding: 8px 15px;
-            font-size: 0.95rem;
-            color: #bbb;
-            border-bottom: 1px solid #2a2a2a;
+            padding: 10px 18px;
+            font-size: 1rem;
+            color: #e2effe;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         .hours-table td:last-child {
             text-align: right;
-            color: #fff;
-            font-weight: 600;
+            color: var(--accent-gold);
+            font-weight: 700;
         }
 
         .call-now-btn {
             display: inline-block;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 14px 40px;
+            background: linear-gradient(135deg, var(--paytm-sky), #0088cc);
+            color: var(--white);
+            padding: 16px 45px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.15rem;
-            margin-top: 25px;
-            box-shadow: 0 5px 20px rgba(212,175,55,0.3);
-            transition: transform 0.3s, background 0.3s;
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(0,185,241,0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .call-now-btn:hover {
-            transform: scale(1.05);
-            background: #fff;
+            transform: scale(1.06);
+            box-shadow: 0 12px 30px rgba(0,185,241,0.8);
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            background: #111;
-            color: #888;
-            margin-top: 50px;
-            font-size: 0.95rem;
-            border-top: 1px solid #222;
+            padding: 30px;
+            background: #000c1e;
+            color: #7a9ec2;
+            margin-top: 60px;
+            font-size: 1rem;
+            border-top: 2px solid rgba(0,185,241,0.2);
         }
 
         /* --- MOBILE RESPONSIVE --- */
@@ -429,46 +433,46 @@
             header {
                 padding: 12px 20px;
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
                 text-align: center;
             }
             header h1 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             .banner-container {
-                max-height: 240px;
+                max-height: 250px;
             }
             .wave-letter {
-                font-size: 2rem;
+                font-size: 2.1rem;
             }
             .container {
                 margin: 20px auto;
-                padding: 0 12px;
+                padding: 0 15px;
             }
             .card {
-                padding: 22px 15px;
+                padding: 25px 18px;
             }
             .card h2 {
-                font-size: 1.35rem;
+                font-size: 1.5rem;
             }
             .gallery-btn {
                 display: none; 
             }
             .contact-box {
-                padding: 25px 15px;
+                padding: 30px 18px;
             }
             .contact-details {
-                font-size: 0.95rem;
-                padding: 15px;
+                font-size: 1rem;
+                padding: 18px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Professional Top Header -->
+    <!-- Vibrant Header -->
     <header>
-        <h1>🎁 SMILEY GIFTS CENTER</h1>
+        <h1>🎁 SMILEY <span>GIFTS CENTER</span></h1>
         <a href="tel:09133196199" class="header-phone">📞 91331 96199</a>
     </header>
 
@@ -510,30 +514,20 @@
             <span class="wave-letter">m</span>
             <span class="wave-letter">e</span>
             <span class="wave-letter">s</span>
-            <span class="wave-letter">&nbsp;</span>
-            <span class="wave-letter">-</span>
-            <span class="wave-letter">&nbsp;</span>
-            <span class="wave-letter">C</span>
-            <span class="wave-letter">h</span>
-            <span class="wave-letter">i</span>
-            <span class="wave-letter">r</span>
-            <span class="wave-letter">a</span>
-            <span class="wave-letter">l</span>
-            <span class="wave-letter">a</span>
         </div>
     </div>
 
     <div class="container">
-        <!-- Welcome Section (అడ్రస్ తొలగించబడింది, కేవలం గిఫ్ట్స్ గురించి మాత్రమే) -->
+        <!-- Welcome Section -->
         <div class="card">
             <h2>Welcome to Smiley Gifts &amp; Perfumes</h2>
-            <p style="text-align: center; font-size: 1.1rem; color: var(--gray);">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
+            <p style="text-align: center; font-size: 1.15rem; color: #4a5568;">Discover our exclusive collection of custom photo frames, god idols, giant teddy bears, luxury perfumes, and special couple showpieces to make your moments unforgettable.</p>
         </div>
 
         <!-- GIFTS GALLERY -->
         <div class="card">
             <h2>Trending Gifts &amp; Perfumes Showcase</h2>
-            <p style="text-align: center; margin-bottom: 20px; font-weight: 500; color: #777;">Click on any item to view full screen:</p>
+            <p style="text-align: center; margin-bottom: 20px; font-weight: 600; color: #55708a;">Click on any item to view full screen:</p>
             
             <div class="gallery-wrapper">
                 <button class="gallery-btn gallery-prev" onclick="scrollGallery(-1)">&#10094;</button>
@@ -609,7 +603,7 @@
         </div>
     </div>
 
-    <!-- Modal Popup (Zoom Image) -->
+    <!-- Modal Popup -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-btn">&times;</span>
         <img id="modalImg" src="" alt="Zoomed Image">
@@ -638,7 +632,7 @@
         function scrollGallery(direction) {
             const container = document.getElementById('galleryContainer');
             container.scrollBy({
-                left: direction * 300,
+                left: direction * 320,
                 behavior: 'smooth'
             });
         }
